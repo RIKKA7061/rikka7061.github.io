@@ -75,23 +75,5 @@
     <br>
 
     <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
-
-    <!-- 방문자 수 표시 -->
-    <div class="visitor-counter">
-        총 방문자 수: <span id="visits">로딩 중...</span>
-    </div>
-
-    <!-- CountAPI로 방문자 수 업데이트 -->
-    <script>
-        fetch('https://api.countapi.xyz/update/minsu-homepage/main/?amount=1')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('visits').innerText = data.value.toLocaleString();
-            })
-            .catch(error => {
-                document.getElementById('visits').innerText = '불러오기 실패';
-                console.error('방문자 수 로딩 실패:', error);
-            });
-    </script>
 </body>
 </html>
