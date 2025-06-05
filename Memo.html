@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>메모장</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    textarea {
+      flex-grow: 1;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      box-sizing: border-box;
+      border: none;
+      resize: none;
+    }
+    footer {
+      padding: 0.5rem;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>📝 메모장</header>
+
+  <textarea id="memo" placeholder="여기에 메모를 작성하세요..."></textarea>
+
+  <footer>
+    <button onclick="saveMemo()">💾 저장</button>
+    <button onclick="loadMemo()">📂 불러오기</button>
+    <input type="file" id="fileInput" style="display: none;" accept=".txt" />
+  </footer>
+
+  <script>
+    function saveMemo() {
+      const content = document.getElementById("memo").value;
+      const blob = new Blob([content], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "memo.txt";
+      link.click();
+    }
+
+    function loadMemo() {
+      document.getElementById("fileInput").click();
+    }
+
+    document.getElementById("fileInput").addEventListener("change", function() {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById("memo").value = e.target.result;
+      };
+      reader.readAsText(file);
+    });
+  </script>
+</body>
+</html>
