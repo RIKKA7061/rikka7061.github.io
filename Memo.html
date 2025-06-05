@@ -23,23 +23,6 @@
       font-size: 1.5rem;
     }
 
-    .back-button {
-      display: inline-block;
-      margin: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #333333;
-      color: #ffffff;
-      text-decoration: none;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .back-button:hover {
-      background-color: #555555;
-    }
-
     textarea {
       flex-grow: 1;
       width: 100%;
@@ -53,38 +36,46 @@
     }
 
     footer {
-      padding: 0.5rem;
-      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
       background-color: #000000;
     }
 
-    button {
+    button, .back-button {
       padding: 0.5rem 1rem;
       font-size: 1rem;
-      margin: 0 0.5rem;
-      cursor: pointer;
       background-color: #333333;
       color: white;
       border: none;
       border-radius: 4px;
+      cursor: pointer;
     }
 
-    button:hover {
+    button:hover, .back-button:hover {
       background-color: #555555;
+    }
+
+    input[type="file"] {
+      display: none;
     }
   </style>
 </head>
 <body>
   <header>📝 메모장</header>
 
-  <a href="index.html" class="back-button">← 돌아가기</a>
-
   <textarea id="memo" placeholder="여기에 메모를 작성하세요..."></textarea>
 
   <footer>
     <button onclick="saveMemo()">💾 저장</button>
     <button onclick="loadMemo()">📂 불러오기</button>
-    <input type="file" id="fileInput" style="display: none;" accept=".txt" />
+    <button onclick="increaseFontSize()">A+</button>
+    <button onclick="decreaseFontSize()">A-</button>
+    <a href="index.html" class="back-button">← 돌아가기</a>
+    <input type="file" id="fileInput" accept=".txt" />
   </footer>
 
   <script>
@@ -111,6 +102,18 @@
       };
       reader.readAsText(file);
     });
+
+    function increaseFontSize() {
+      const textarea = document.getElementById("memo");
+      const currentSize = parseFloat(window.getComputedStyle(textarea).fontSize);
+      textarea.style.fontSize = (currentSize + 2) + 'px';
+    }
+
+    function decreaseFontSize() {
+      const textarea = document.getElementById("memo");
+      const currentSize = parseFloat(window.getComputedStyle(textarea).fontSize);
+      textarea.style.fontSize = (currentSize - 2) + 'px';
+    }
   </script>
 </body>
 </html>
