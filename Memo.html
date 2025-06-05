@@ -4,9 +4,6 @@
   <meta charset="UTF-8" />
   <title>메모장</title>
   <style>
-    a {
-            color: #ffffff;
-    }
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -14,7 +11,10 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      background-color: #121212;
+      color: #ffffff;
     }
+
     header {
       background-color: #000000;
       color: #ffffff;
@@ -22,6 +22,24 @@
       text-align: center;
       font-size: 1.5rem;
     }
+
+    .back-button {
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #333333;
+      color: #ffffff;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #555555;
+    }
+
     textarea {
       flex-grow: 1;
       width: 100%;
@@ -30,25 +48,37 @@
       box-sizing: border-box;
       border: none;
       resize: none;
+      background-color: #1e1e1e;
+      color: #ffffff;
     }
+
     footer {
       padding: 0.5rem;
       text-align: center;
       background-color: #000000;
     }
+
     button {
       padding: 0.5rem 1rem;
       font-size: 1rem;
       margin: 0 0.5rem;
       cursor: pointer;
+      background-color: #333333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #555555;
     }
   </style>
 </head>
 <body>
   <header>📝 메모장</header>
-  <br>
-<a href="index.html" style="color:#ffffff;">← 돌아가기</a>
-  <br>
+
+  <a href="index.html" class="back-button">← 돌아가기</a>
+
   <textarea id="memo" placeholder="여기에 메모를 작성하세요..."></textarea>
 
   <footer>
@@ -71,12 +101,12 @@
       document.getElementById("fileInput").click();
     }
 
-    document.getElementById("fileInput").addEventListener("change", function() {
+    document.getElementById("fileInput").addEventListener("change", function () {
       const file = this.files[0];
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         document.getElementById("memo").value = e.target.result;
       };
       reader.readAsText(file);
