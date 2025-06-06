@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>때깔 블로그</title>
+
+  <!-- Highlight.js 스타일 -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cs.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      max-width: 960px;
+      margin: auto;
+      padding: 0 10px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ffa500;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    pre {
+      background-color: #111;
+      color: #dcdcdc;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 0.95em;
+    }
+
+    .label {
+      font-weight: bold;
+      display: inline-block;
+      margin: 20px 0 10px;
+      padding: 4px 8px;
+      background-color: #ffd580;
+      color: #000;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>백준 16928번 C#/C++ 풀이</h1>
+
+  <p>
+    <strong>문제 설명:</strong><br>
+    백준 16928번 문제는 <em>뱀과 사다리 게임</em>입니다.<br>
+    플레이어는 주사위를 던져 1칸부터 100칸까지 이동하며, 도중에 사다리나 뱀을 타게 됩니다.
+  </p>
+
+  <p><strong>예시:</strong></p>
+  <ul>
+    <li>사다리: 12칸 → 98칸</li>
+    <li>뱀: 63칸 → 32칸</li>
+  </ul>
+
+  <p>이런 상황이라면, 운이 좋을 경우 아래처럼 이동 가능합니다:</p>
+  <ul>
+    <li>1: (시작) 1칸 → 주사위 5 → 6칸</li>
+    <li>2: 6칸 → 주사위 6 → 12칸 → 사다리 타고 98칸</li>
+    <li>3: 98칸 → 주사위 2 → 100칸 (도착!)</li>
+  </ul>
+
+  <p>이론상 3번의 주사위만으로 도착할 수 있습니다.</p>
+
+  <!-- C# 코드 -->
+  <div class="label">C#</div>
+  <pre><code class="language-cs">
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static int[] board = new int[101];
+    static int[] dist = new int[101];
+
+    static void Main()
+    {
+        string[] input = Console.ReadLine().Split(' ');
+        int ladderCount = int.Parse(input[0]);
+        int snakeCount = int.Parse(input[1]);
+
+        for (int i = 0; i < ladderCount + snakeCount; i++)
+        {
+            string[] line = Console.ReadLine().Split(' ');
+            int from = int.Parse(line[0]);
+            int to = int.Parse(line[1]);
+            board[from] = to;
+        }
+
+        for (int i = 1; i <= 100; i++)
+            dist[i] = -1;
+
+        Queue<int> q = new Queue<int>();
+        q.Enqueue(1);
+        dist[1] = 0;
+
+        while (q.Count > 0)
+        {
+            int current = q.Dequeue();
+
+            for (int dice = 1; dice <= 6; dice++)
+            {
+                int next = current + dice;
+                if (next > 100) continue;
+
+                if (board[next] != 0)
+                    next = board[next];
+
+                if (dist[next] == -1)
+                {
+                    dist[next] = dist[current] + 1;
+                    q.Enqueue(next);
+                }
+            }
+        }
+
+        Console.WriteLine(dist[100]);
+    }
+}
+  </code></pre>
+
+  <!-- C++ 코드 -->
+  <div class="label">C++</div>
+  <pre><code class="language-cpp">
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+static vector<int> board(101);
+static vector<int> dist(101);
+
+int main() 
+{
+    int ladderCount, snakeCount;
+    cin >> ladderCount >> snakeCount;
+    
+    for(int i = 0; i < ladderCount + snakeCount; i++)
+    {
+        int from, to;
+        cin >> from >> to;
+        board[from] = to;
+    }
+    
+    for(int i = 1; i <= 100; i++)
+    {
+        dist[i] = -1;
+    }
+    
+    queue<int> q;
+    q.push(1);
+    dist[1] = 0;
+    
+    while(!q.empty())
+    {
+        int current = q.front();
+        q.pop();
+        
+        for(int dice = 1; dice <= 6; dice++)
+        {
+            int next = current + dice;
+            if (next > 100) continue;
+            if(board[next] != 0)
+            {
+                next = board[next];
+            }
+            
+            if(dist[next] == -1)
+            {
+                dist[next] = dist[current] + 1;
+                q.push(next);
+            }
+        }
+    }
+    
+    cout << dist[100] << '\n';
+}
+  </code></pre>
+
+</body>
+</html>
