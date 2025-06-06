@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ 모바일 대응 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>때깔 블로그</title>
   <style>
     body {
@@ -15,18 +15,18 @@
     }
 
     h1 {
-      font-size: 8vw; /* ✅ 화면에 따라 유동 크기 */
+      font-size: 2.5rem;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 5vw;
+      font-size: 1.2rem;
       margin-bottom: 30px;
     }
 
     a {
       color: #ffffff;
-      font-size: 4vw;
+      font-size: 1rem;
       display: inline-block;
       margin-top: 20px;
       text-decoration: none;
@@ -37,8 +37,8 @@
       width: 100%;
       max-width: 300px;
       margin: 0 auto 30px;
-      padding: 15px 30px;
-      font-size: 5vw;
+      padding: 12px 24px;
+      font-size: 1.2rem;
       background-color: #ffb6c1;
       color: #000;
       border: none;
@@ -49,6 +49,26 @@
 
     button:hover {
       background-color: #ff69b4;
+    }
+
+    /* ✅ 모바일 대응: 작은 화면에서 텍스트 크게 */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      p {
+        font-size: 5vw;
+      }
+
+      button {
+        font-size: 5vw;
+        padding: 15px 0;
+      }
+
+      a {
+        font-size: 4vw;
+      }
     }
   </style>
 </head>
