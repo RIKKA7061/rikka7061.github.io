@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ 모바일 대응 추가 -->
     <title>때깔</title>
     <style> 
         body {
@@ -9,33 +10,42 @@
             color: #ffb6c1;
             font-family: sans-serif;
             text-align: center;
+            padding: 20px;
+            margin: 0;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 8vw; /* ✅ 모바일에서도 자연스러운 크기 */
             margin-top: 20px;
         }
 
         p {
-            font-size: 24px;
+            font-size: 5vw;
             margin-top: 30px;
         }
 
         img {
+            width: 100%;
+            max-width: 500px;  /* ✅ 큰 화면에서도 너무 커지지 않게 */
+            height: auto;
             margin-top: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px #ffb6c1;
         }
 
         button {
-            margin-top: 40px;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 15px auto;
             padding: 15px 30px;
-            font-size: 24px;
+            font-size: 5vw;
             background-color: #ffb6c1;
             color: #000;
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
@@ -44,7 +54,7 @@
 
         .visitor-counter {
             margin-top: 50px;
-            font-size: 20px;
+            font-size: 4vw;
             color: #ffb6c1;
         }
     </style>
@@ -52,11 +62,9 @@
 <body>
     <h1>때깔</h1>
 
-    <img src="https://file.newswire.co.kr/data/datafile2/thumb_480/2008/12/2039103817_20081204102208_5415926347.jpg" alt="민수 이미지" width="500">
+    <img src="https://file.newswire.co.kr/data/datafile2/thumb_480/2008/12/2039103817_20081204102208_5415926347.jpg" alt="민수 이미지">
 
     <p>github Page에 올리고 HTML로 만든 첫 홈페이지 입니다.</p>
-
-    <br>
 
     <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
     <button onclick="location.href='blogPage0.html'">때깔 블로그 보러가기</button>
