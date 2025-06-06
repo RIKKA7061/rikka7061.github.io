@@ -1,73 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ 모바일 대응 추가 -->
-    <title>때깔</title>
-    <style> 
-        body {
-            background-color: #000000;
-            color: #ffb6c1;
-            font-family: sans-serif;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>때깔</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffb6c1;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
 
-        h1 {
-            font-size: 8vw; /* ✅ 모바일에서도 자연스러운 크기 */
-            margin-top: 20px;
-        }
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+    }
 
-        p {
-            font-size: 5vw;
-            margin-top: 30px;
-        }
+    p {
+      font-size: 1.25rem;
+      margin-top: 30px;
+    }
 
-        img {
-            width: 100%;
-            max-width: 500px;  /* ✅ 큰 화면에서도 너무 커지지 않게 */
-            height: auto;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ffb6c1;
-        }
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ffb6c1;
+    }
 
-        button {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 15px auto;
-            padding: 15px 30px;
-            font-size: 5vw;
-            background-color: #ffb6c1;
-            color: #000;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    button {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 15px auto;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #ffb6c1;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-        button:hover {
-            background-color: #ff69b4;
-        }
+    button:hover {
+      background-color: #ff69b4;
+    }
 
-        .visitor-counter {
-            margin-top: 50px;
-            font-size: 4vw;
-            color: #ffb6c1;
-        }
-    </style>
+    .visitor-counter {
+      margin-top: 50px;
+      font-size: 1rem;
+      color: #ffb6c1;
+    }
+
+    /* ✅ 모바일 대응: 작은 화면일 때 텍스트 크게 */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      p {
+        font-size: 5vw;
+      }
+
+      button {
+        font-size: 5vw;
+      }
+
+      .visitor-counter {
+        font-size: 4vw;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>때깔</h1>
+  <h1>때깔</h1>
 
-    <img src="https://file.newswire.co.kr/data/datafile2/thumb_480/2008/12/2039103817_20081204102208_5415926347.jpg" alt="민수 이미지">
+  <img src="https://file.newswire.co.kr/data/datafile2/thumb_480/2008/12/2039103817_20081204102208_5415926347.jpg" alt="민수 이미지">
 
-    <p>github Page에 올리고 HTML로 만든 첫 홈페이지 입니다.</p>
+  <p>github Page에 올리고 HTML로 만든 첫 홈페이지 입니다.</p>
 
-    <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
-    <button onclick="location.href='blogPage0.html'">때깔 블로그 보러가기</button>
-    <button onclick="location.href='Memo.html'">웹 메모장 보러가기</button>
+  <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
+  <button onclick="location.href='blogPage0.html'">때깔 블로그 보러가기</button>
+  <button onclick="location.href='Memo.html'">웹 메모장 보러가기</button>
 </body>
 </html>
