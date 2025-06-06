@@ -15,18 +15,18 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-top: 20px;
     }
 
     p {
-      font-size: 1.25rem;
-      margin-top: 30px;
+      font-size: 1rem;
+      margin-top: 20px;
     }
 
     img {
       width: 100%;
-      max-width: 500px;
+      max-width: 400px;
       height: auto;
       margin-top: 20px;
       border-radius: 10px;
@@ -34,12 +34,10 @@
     }
 
     button {
-      display: block;
-      width: 100%;
-      max-width: 300px;
-      margin: 15px auto;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      display: inline-block;
+      margin: 10px 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
       background-color: #ffb6c1;
       color: #000;
       border: none;
@@ -53,12 +51,11 @@
     }
 
     .visitor-counter {
-      margin-top: 50px;
-      font-size: 1rem;
-      color: #ffb6c1;
+      margin-top: 30px;
+      font-size: 0.9rem;
     }
 
-    /* ✅ 모바일 대응: 작은 화면일 때 텍스트 크게 */
+    /* ✅ 모바일 대응: 작은 화면에서만 크게 보여줌 */
     @media (max-width: 480px) {
       h1 {
         font-size: 8vw;
@@ -69,11 +66,19 @@
       }
 
       button {
+        display: block;
+        width: 90%;
         font-size: 5vw;
+        margin: 15px auto;
+        padding: 15px 0;
       }
 
       .visitor-counter {
         font-size: 4vw;
+      }
+
+      img {
+        max-width: 100%;
       }
     }
   </style>
@@ -83,10 +88,10 @@
 
   <img src="https://file.newswire.co.kr/data/datafile2/thumb_480/2008/12/2039103817_20081204102208_5415926347.jpg" alt="민수 이미지">
 
-  <p>github Page에 올리고 HTML로 만든 첫 홈페이지 입니다.</p>
+  <p>GitHub Page에 올리고 HTML로 만든 첫 홈페이지입니다.</p>
 
-  <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
-  <button onclick="location.href='blogPage0.html'">때깔 블로그 보러가기</button>
-  <button onclick="location.href='Memo.html'">웹 메모장 보러가기</button>
+  <button onclick="location.href='portfolio.html'">포트폴리오</button>
+  <button onclick="location.href='blogPage0.html'">블로그</button>
+  <button onclick="location.href='Memo.html'">웹 메모장</button>
 </body>
 </html>
