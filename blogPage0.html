@@ -1,42 +1,63 @@
 <!DOCTYPE html>
-
-<html lang = "ko">
-
+<html lang="ko">
 <head>
-  <meta charset = "UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ 모바일 대응 -->
   <title>때깔 블로그</title>
   <style>
-    body{
-      background-color : #000000;
-      color : #ffffff;
-      font-family : sans-serif;
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
     }
-    a {
-      color: #87ceeb;
-    }
-    button {
-            margin-top: 40px;
-            padding: 15px 30px;
-            font-size: 24px;
-            background-color: #ffb6c1;
-            color: #000;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
 
-        button:hover {
-            background-color: #ff69b4;
-        }
+    h1 {
+      font-size: 8vw; /* ✅ 화면에 따라 유동 크기 */
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 5vw;
+      margin-bottom: 30px;
+    }
+
+    a {
+      color: #ffffff;
+      font-size: 4vw;
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 30px;
+      padding: 15px 30px;
+      font-size: 5vw;
+      background-color: #ffb6c1;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
   </style>
 </head>
-
 <body>
   <h1>때깔 블로그</h1>
-  <p> 때깔 블로그에 오신 것을 환영합니다.</p>
-  <br>
-  <button onclick="location.href='portfolio.html'">포트폴리오 보러가기</button>
-  <br>
-  <a href="index.html" style="color:#ffffff;">← 돌아가기</a>
+  <p>때깔 블로그에 오신 것을 환영합니다.</p>
+
+  <button onclick="location.href='blogPost1.html'">백준 16928번 C#/C++</button>
+
+  <a href="index.html">← 돌아가기</a>
 </body>
 </html>
