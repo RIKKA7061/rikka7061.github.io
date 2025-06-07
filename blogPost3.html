@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>때깔 블로그</title>
+
+  <!-- Highlight.js 스타일 -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cs.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      max-width: 960px;
+      margin: auto;
+      padding: 0 10px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ffa500;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    pre {
+      background-color: #111;
+      color: #dcdcdc;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 0.95em;
+    }
+
+    .label {
+      font-weight: bold;
+      display: inline-block;
+      margin: 20px 0 10px;
+      padding: 4px 8px;
+      background-color: #ffd580;
+      color: #000;
+      border-radius: 4px;
+    }
+  
+    button {
+      display: inline-block;
+      margin: 10px 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ffb6c1;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>백준14626번 C#/C++</h1>
+
+    <strong>ISBN</strong><br>
+    13자리수 abcdefghijklm 이라 할시<br>
+    (a + 3b + c + 3d + e + 3f + g + 3h + i + 3j + k + 3l + m) % 10 = 0이다.<br>
+    <br>
+    저 숫자들 abcde...l 중에 하나를 몰라도 <br>
+    for문으로 1 부터 9까지 하나씩 넣어보면서 10으로 나누어 떨어질 때 그 수가 답이다.<br>
+  <br>
+  예를 들어, 111111111*111 일 때 *이 들어갈 수는<br>
+  1이 12개 이므로 (6 + (3 x 6) + *) % 10 = 0 이되야 된다.<br>
+  즉, *은 6이다.<br>
+  <br>
+    이제 이 간단한 알고리즘을 바탕으로 코드를 짜보자<br>
+   <!-- C# 코드 -->
+  <div class="label">C#</div>
+  <pre><code class="language-cs">
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        int AsteriskIndex = input.IndexOf('*');
+        int hap = 0;
+        for (int i = 0; i < 13; i++)
+        {
+            if (i == AsteriskIndex)
+                continue;
+
+            int num = input[i] - '0';
+            hap += (i % 2 == 0) ? num : 3 * num;
+        }
+
+        for (int x = 0; x <= 9; x++)
+        {
+            int total = hap + ((AsteriskIndex % 2 == 0) ? x : 3 * x);
+            if ((total % 10) == 0)
+            {
+                Console.WriteLine(x);
+                return;
+            }
+        }
+    }
+}
+  </code></pre>
+
+  <!-- C++ 코드 -->
+  <div class="label">C++</div>
+  <pre><code class="language-cpp">
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    string input;
+    cin >> input;
+    size_t Asterisk_index = input.find("*");
+    
+    int hap = 0;
+    for(int i = 0; i < 13; i++)
+    {
+        if(i == Asterisk_index) continue;
+        
+        int num = input[i] - '0';
+        hap += (i % 2 == 0) ? num : num * 3;
+    }
+    
+    for(int i = 0; i <= 9; i++)
+    {
+        int AddedHap = hap + ((Asterisk_index % 2 == 0) ? i : i * 3);
+        
+        if((AddedHap % 10) == 0)
+        {
+            cout << i << endl;
+            return 0;
+        }
+    }
+}
+  </code></pre>
+      <button onclick="location.href='index.html'">때깔 홈페이지</button>
+</body>
+</html>
