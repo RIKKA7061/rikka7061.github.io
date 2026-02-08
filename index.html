@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>웹사이트 탭</title>
+    <meta charset="UTF-8">
+    <title>글 업로드</title>
 </head>
 <body>
-  <p>
-  땡큐<br>
-  <a href = "https://play.google.com/store/apps/dev?id=8043178918719227338">플레이스토어</a><br>
-  <a href = "portfolio.html">포트폴리오</a>
-  </p>
+    <h2>글 작성</h2>
+
+    <input type="text" id="title" placeholder="제목" /><br><br>
+
+    <textarea id="content" rows="10" cols="50" placeholder="내용을 입력하세요"></textarea><br><br>
+
+    <button onclick="uploadPost()">업로드</button>
+
+    <script>
+        function uploadPost() {
+            const title = document.getElementById("title").value;
+            const content = document.getElementById("content").value;
+
+            fetch("/upload", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: title,
+                    content: content
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(err => {
+                console.error(err);
+                alert("업로드 실패");
+            });
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
