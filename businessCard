@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>QR 명함</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
 
+        .card {
+            background: white;
+            width: 320px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .profile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 auto 15px;
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .job {
+            color: gray;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .qr {
+            margin-top: 15px;
+        }
+
+        .qr img {
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="profile"></div>
+    <div class="name">김민수</div>
+    <div class="job">게임 개발자</div>
+
+    <div class="info">📧 hdgehsdj.sn@gmail.com</div>
+
+    <!-- QR 코드 -->
+    <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://rikka7061.github.io/portfolio.html" alt="QR Code">
+        <div style="font-size:12px; color:gray;">포트폴리오 바로가기</div>
+    </div>
+</div>
+
+</body>
+</html>
