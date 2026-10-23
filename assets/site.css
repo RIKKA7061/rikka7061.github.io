@@ -228,3 +228,35 @@ a { color: var(--link); text-underline-offset: 3px; }
 .policy ul { padding-left: 1.2em; display: grid; gap: 6px; }
 .policy code { font-family: var(--mono); font-size: 0.9em; background: var(--surface); border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; }
 .todo { background: #fff1a6; color: #4d3a00; padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+
+/* ---------- 플레이스토어 이미지 (배포 때 자동으로 붙음) ---------- */
+.cover.has-img { background: #111; }
+.cover.has-img::before { display: none; }
+.cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+.cover.has-img .cover-title { display: none; }
+.cover.has-img .cover-genre {
+  background: rgba(0, 0, 0, 0.55); padding: 2px 8px; border-radius: 6px; opacity: 1;
+}
+.with-icon { display: flex; align-items: center; gap: 10px; }
+.game-icon {
+  width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.game-icon-lg { width: 56px; height: 56px; border-radius: 14px; }
+.game-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+.shots { display: grid; gap: 12px; }
+[hidden] { display: none !important; } /* display 규칙이 hidden 을 덮지 않게 */
+.shots h2 { font-size: 1.1rem; }
+.shots-list {
+  list-style: none; padding: 0 0 8px; margin: 0;
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+.shots-list li { flex: 0 0 auto; scroll-snap-align: start; }
+.shots-list a { display: block; border-radius: 12px; }
+.shot {
+  display: block; height: 320px; width: auto; max-width: 80vw; object-fit: contain;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+}
+@media (max-width: 520px) { .shot { height: 240px; } }
