@@ -162,6 +162,8 @@ for (const slug of slugs) {
   );
 }
 console.log(['플레이스토어 이미지', ...summary].join('\n'));
+// Actions 실행 화면에 게임별 결과를 바로 보이게
+for (const line of summary) console.log(`::notice title=플레이스토어 이미지::${line.replace(/^- /, '')}`);
 if (process.env.GITHUB_STEP_SUMMARY) {
   await writeFile(process.env.GITHUB_STEP_SUMMARY, ['### 플레이스토어 이미지', ...summary].join('\n') + '\n', { flag: 'a' });
 }
