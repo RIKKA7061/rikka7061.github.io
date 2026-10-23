@@ -13,6 +13,8 @@ assets/site.js              화면 테마 버튼
 businessCard.html           웹 명함
 portfolio.html              예전 주소 유지용 → 첫 화면 게임 목록으로 이동 (명함 QR 이 이 주소를 가리킴)
 404.html                    없는 주소로 들어왔을 때
+livealone/                  사이드 프로젝트 '자취생활 마스터' 데모 (LiveAlone 저장소에서 npm run build:demo 결과물)
+_drafts/                    공개 전 초안 (밑줄로 시작하는 폴더라 사이트에 올라가지 않음)
 ```
 
 ## 게임 안에 넣을 링크
@@ -27,6 +29,11 @@ portfolio.html              예전 주소 유지용 → 첫 화면 게임 목록
 | 악몽회귀자 | https://rikka7061.github.io/games/nightmare-regressor/ |
 | 판타즘 초대장 사건 | https://rikka7061.github.io/games/phantasm/ |
 
+## 사이드 프로젝트 데모 갱신
+
+LiveAlone 저장소에서 `npm run build:demo` 를 실행한 뒤 `dist-demo/` 안의 파일로 `livealone/` 폴더를 통째로 바꾸면 됩니다.
+공개 데모 빌드에는 마스코트 일러스트가 들어가지 않습니다(권리 확인 전).
+
 ## 새 게임 추가하기
 
 1. `games/dna/` 폴더를 복사해 새 이름(영문 소문자·하이픈, 예: `games/my-new-game/`)으로 만듭니다. 이 이름이 게임 속 링크 주소가 됩니다.
@@ -36,7 +43,6 @@ portfolio.html              예전 주소 유지용 → 첫 화면 게임 목록
 
 ## 앞으로 넣으면 좋은 것
 
-- **개인정보처리방침**: Google Play·App Store 는 게임마다 개인정보처리방침 URL 을 요구합니다.
-  게임 페이지 아래에 `privacy.html`(예: `games/dna/privacy.html`)로 두면 스토어에 그 주소를 등록할 수 있습니다.
-  광고·분석 SDK 사용 여부에 따라 내용이 달라지므로 게임별로 확인 후 작성하세요.
+- **개인정보처리방침**: 출시한 3개 게임의 초안이 `_drafts/privacy/` 에 있습니다.
+  확인할 것과 공개하는 방법은 `_drafts/README.md` 를 보세요.
 - 게임 스크린샷: 각 게임 폴더에 이미지를 넣고 `.cover` 대신 `<img>` 로 바꾸면 됩니다.

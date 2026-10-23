@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f3ee" />
+    <meta name="description" content="혼자 사는 사람을 위한 집안일 관리 앱" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
+    <title>자취생활 마스터</title>
+    <script>
+      // 저장된 테마를 React 로딩 전에 적용해 깜빡임을 막는다 (src/state/theme.ts 와 같은 키)
+      try {
+        var t = localStorage.getItem('solo-living-master:theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.dataset.theme = t;
+          document.documentElement.dataset.themeSource = 'app';
+        }
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="./assets/index-GgVaIIEP.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DEZu-qop.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

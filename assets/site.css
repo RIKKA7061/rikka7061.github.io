@@ -201,3 +201,30 @@ a { color: var(--link); text-underline-offset: 3px; }
 .footer a { color: var(--muted); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---------- 사이드 프로젝트 (게임보다 한 단계 가볍게) ---------- */
+.side-list { list-style: none; padding: 0; display: grid; gap: 12px; }
+.side {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 18px; border-radius: 14px; border: 1px dashed var(--line); background: var(--surface);
+}
+.side-icon {
+  flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 1.6rem; background: var(--bg); border: 1px solid var(--line);
+}
+.side-body { display: grid; gap: 8px; min-width: 0; }
+.side-body h3 { font-size: 1.1rem; }
+.side-body > p { color: var(--muted); font-size: 0.95rem; }
+.side-body .links a { font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; }
+.side-note { font-size: 0.82rem !important; }
+
+/* ---------- 문서 (개인정보처리방침 등) ---------- */
+.policy { padding-block: 8px 48px; max-width: 760px; }
+.policy h1 { font-size: clamp(1.5rem, 5vw, 2rem); margin-top: 14px; }
+.policy .meta { color: var(--muted); margin-top: 6px; }
+.policy h2 { font-size: 1.15rem; margin-top: 28px; margin-bottom: 8px; }
+.policy p, .policy li { line-height: 1.75; }
+.policy p + p { margin-top: 10px; }
+.policy ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.policy code { font-family: var(--mono); font-size: 0.9em; background: var(--surface); border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; }
+.todo { background: #fff1a6; color: #4d3a00; padding: 1px 5px; border-radius: 4px; font-weight: 700; }
