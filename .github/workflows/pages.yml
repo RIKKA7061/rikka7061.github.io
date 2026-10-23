@@ -13,6 +13,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read # 예전 방식 배포가 끝났는지 확인용
 
 concurrency:
   group: pages-${{ github.ref }}
@@ -51,5 +52,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # 저장소 설정 Pages → Source 가 아직 'Deploy from a branch' 면 GitHub 의 예전 방식 배포도 함께 돈다.
+      # 그쪽이 나중에 끝나면 이미지 없는 사이트로 덮이므로, 끝날 때까지 기다렸다가 배포한다.
+      # (Source 를 'GitHub Actions' 로 바꾸면 예전 방식은 돌지 않아 바로 지나간다)
+      - name: 예전 방식 배포가 끝날 때까지 기다리기
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 30); do
+            n=$(gh run list -R "$GITHUB_REPOSITORY" --workflow "pages build and deployment" --commit "$GITHUB_SHA" \
+                  --json status --jq '[.[] | select(.status != "completed")] | length' 2>/dev/null || echo 0)
+            [ "$n" = "0" ] && exit 0
+            echo "예전 방식 배포 진행 중… ($i)"; sleep 10
+          done
+
       - id: deployment
         uses: actions/deploy-pages@v4
