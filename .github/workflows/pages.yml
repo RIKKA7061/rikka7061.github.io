@@ -59,12 +59,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for i in $(seq 1 30); do
-            n=$(gh run list -R "$GITHUB_REPOSITORY" --workflow "pages build and deployment" --commit "$GITHUB_SHA" \
-                  --json status --jq '[.[] | select(.status != "completed")] | length' 2>/dev/null || echo 0)
+          sleep 5 # 예전 방식 실행이 만들어질 시간을 준다
+          for i in $(seq 1 36); do
+            n=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA&per_page=50" \
+                  --jq '[.workflow_runs[] | select(.name == "pages build and deployment" and .status != "completed")] | length')
+            echo "진행 중인 예전 방식 배포: $n"
             [ "$n" = "0" ] && exit 0
-            echo "예전 방식 배포 진행 중… ($i)"; sleep 10
+            sleep 10
           done
+          echo "::warning::예전 방식 배포가 끝나지 않아 그냥 배포합니다"
 
       - id: deployment
         uses: actions/deploy-pages@v4
