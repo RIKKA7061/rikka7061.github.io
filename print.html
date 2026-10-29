@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>포트폴리오 (인쇄용) · Sanamichi</title>
+  <meta name="description" content="게임 개발자 김민수(Sanamichi)의 인쇄용 포트폴리오. A4 용지에 맞춘 사진 위주 버전.">
+  <link rel="canonical" href="https://rikka7061.github.io/print.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/print.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<!-- 화면에서만 보이는 도구 막대 (인쇄되지 않음) -->
+<div class="toolbar">
+  <a href="index.html">← 사이트로</a>
+  <span class="toolbar-title">A4 인쇄용 포트폴리오</span>
+  <span class="toolbar-actions">
+    <a class="tb-btn" data-pdf-link href="portfolio.pdf" download hidden>PDF 받기</a>
+    <button type="button" class="tb-btn tb-primary" data-print-btn>인쇄하기</button>
+  </span>
+</div>
+
+<main class="sheet">
+  <!-- 1쪽: 소개 -->
+  <section class="p-intro">
+    <header class="p-head">
+      <div>
+        <p class="p-eyebrow">Game Developer Portfolio</p>
+        <h1>김민수 <span class="p-handle">Sanamichi</span></h1>
+        <p class="p-role">게임 개발자 · 기획 / 프로그래머</p>
+        <p class="p-school">광운대학교 게임프로그래밍학과 재학</p>
+        <p class="p-contact">✉ hdgehsdj.sn@gmail.com</p>
+      </div>
+      <figure class="p-qr">
+        <img src="assets/qr/site.svg" alt="포트폴리오 사이트 QR 코드">
+        <figcaption>휴대폰으로 찍으면<br>포트폴리오 사이트</figcaption>
+      </figure>
+    </header>
+
+    <dl class="p-facts">
+      <div><dt>만든 게임</dt><dd>4</dd></div>
+      <div><dt>플레이스토어 출시</dt><dd>3</dd></div>
+      <div><dt>주 엔진</dt><dd>Unity</dd></div>
+      <div><dt>맡은 역할</dt><dd class="small">기획 · 프로그래밍 · 팀장</dd></div>
+    </dl>
+
+    <h2 class="p-h2">프로젝트 한눈에</h2>
+    <table class="p-table">
+      <thead>
+        <tr><th scope="col">게임</th><th scope="col">장르 · 형태</th><th scope="col">플랫폼</th><th scope="col">팀 · 역할</th><th scope="col">기간</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">DNA</th><td>뱀서라이크 · 2D</td><td>모바일 (Android)</td><td>팀 육하원칙 · 기획 / 프로그래머</td><td>–</td></tr>
+        <tr><th scope="row">OrBit</th><td>아케이드 러너 · 3D</td><td>모바일 (Android)</td><td>팀 i5 · 기획 / 프로그래머</td><td>–</td></tr>
+        <tr><th scope="row">악몽회귀자</th><td>로그라이크 · 2D 쿼터뷰</td><td>PC</td><td>팀 log6 · 팀장 / 프로그래머</td><td>2024.8 ~ 12</td></tr>
+        <tr><th scope="row">판타즘 초대장 사건</th><td>텍스트 RPG · 2D</td><td>모바일 (Android)</td><td>학과 친구들 팀 · 프로그래머</td><td>2024.12</td></tr>
+        <tr class="p-side-row"><th scope="row">자취생활 마스터</th><td>생활 관리 웹앱 (사이드)</td><td>웹 · 모바일 브라우저</td><td>개인 · 기획 / 개발</td><td>2026</td></tr>
+      </tbody>
+    </table>
+    <p class="p-note">모든 게임은 Unity로 만들었습니다. 각 프로젝트의 QR 코드를 찍으면 소개·다운로드 페이지로 이동합니다.</p>
+  </section>
+
+  <!-- 게임: 사진이 중심. 대표 이미지·스크린샷은 사이트에서 열 때 플레이스토어 이미지로 자동으로 채워진다 -->
+  <section class="p-game" data-print-game="dna">
+    <div class="p-game-head">
+      <div>
+        <h2 class="p-title"><span class="p-title-text">DNA</span></h2>
+        <p class="p-tags">뱀서라이크 · 2D · 모바일 (Android) · Unity · <b>플레이스토어 출시</b></p>
+      </div>
+      <figure class="p-qr p-qr-sm"><img src="assets/qr/dna.svg" alt="DNA 페이지 QR 코드"><figcaption>DNA</figcaption></figure>
+    </div>
+    <div class="p-hero p-cover-dna"><span>DNA</span></div>
+    <div class="p-shots" hidden></div>
+    <dl class="p-info">
+      <div><dt>팀</dt><dd>팀 육하원칙</dd></div>
+      <div><dt>맡은 역할</dt><dd>기획 · 프로그래머</dd></div>
+      <div><dt>엔진</dt><dd>Unity</dd></div>
+    </dl>
+  </section>
+
+  <section class="p-game" data-print-game="orbit">
+    <div class="p-game-head">
+      <div>
+        <h2 class="p-title"><span class="p-title-text">OrBit</span></h2>
+        <p class="p-tags">아케이드 러너 · 3D · 모바일 (Android) · Unity · <b>플레이스토어 출시</b></p>
+      </div>
+      <figure class="p-qr p-qr-sm"><img src="assets/qr/orbit.svg" alt="OrBit 페이지 QR 코드"><figcaption>OrBit</figcaption></figure>
+    </div>
+    <div class="p-hero p-cover-orbit"><span>OrBit</span></div>
+    <div class="p-shots" hidden></div>
+    <dl class="p-info">
+      <div><dt>팀</dt><dd>팀 i5</dd></div>
+      <div><dt>맡은 역할</dt><dd>기획 · 프로그래머</dd></div>
+      <div><dt>엔진</dt><dd>Unity</dd></div>
+    </dl>
+  </section>
+
+  <section class="p-game p-game-compact" data-print-game="nightmare-regressor">
+    <div class="p-game-head">
+      <div>
+        <h2 class="p-title"><span class="p-title-text">악몽회귀자</span></h2>
+        <p class="p-tags">로그라이크 · 2D 쿼터뷰 · PC · Unity</p>
+      </div>
+      <figure class="p-qr p-qr-sm"><img src="assets/qr/nightmare-regressor.svg" alt="악몽회귀자 페이지 QR 코드"><figcaption>악몽회귀자</figcaption></figure>
+    </div>
+    <div class="p-hero p-cover-nightmare"><span>악몽회귀자</span></div>
+    <div class="p-shots" hidden></div>
+    <dl class="p-info">
+      <div><dt>팀</dt><dd>팀 log6</dd></div>
+      <div><dt>맡은 역할</dt><dd>팀장 · 프로그래머</dd></div>
+      <div><dt>기간</dt><dd>2024년 8월 ~ 12월</dd></div>
+    </dl>
+  </section>
+
+  <section class="p-game p-game-compact" data-print-game="phantasm">
+    <div class="p-game-head">
+      <div>
+        <h2 class="p-title"><span class="p-title-text">판타즘 초대장 사건</span></h2>
+        <p class="p-tags">텍스트 RPG · 2D · 모바일 (Android) · Unity · <b>플레이스토어 출시</b></p>
+      </div>
+      <figure class="p-qr p-qr-sm"><img src="assets/qr/phantasm.svg" alt="판타즘 초대장 사건 페이지 QR 코드"><figcaption>판타즘</figcaption></figure>
+    </div>
+    <div class="p-hero p-cover-phantasm"><span>판타즘 초대장 사건</span></div>
+    <div class="p-shots" hidden></div>
+    <dl class="p-info">
+      <div><dt>팀</dt><dd>학과 친구들과 결성한 팀</dd></div>
+      <div><dt>맡은 역할</dt><dd>프로그래머</dd></div>
+      <div><dt>기간</dt><dd>2024년 12월</dd></div>
+    </dl>
+  </section>
+
+  <!-- 사이드 프로젝트 -->
+  <section class="p-game p-side">
+    <div class="p-game-head">
+      <div>
+        <p class="p-eyebrow">Side Project</p>
+        <h2 class="p-title"><span class="p-title-text">자취생활 마스터</span></h2>
+        <p class="p-tags">생활 관리 웹앱 · React · TypeScript · Vite · 취미 프로젝트</p>
+      </div>
+      <figure class="p-qr p-qr-sm"><img src="assets/qr/livealone.svg" alt="자취생활 마스터 데모 QR 코드"><figcaption>바로 써 보기</figcaption></figure>
+    </div>
+    <div class="p-phones">
+      <figure><img src="assets/print/livealone-dash.webp" alt="자취생활 마스터 대시보드 화면"><figcaption>대시보드: 집안일 상태·레벨·관리율</figcaption></figure>
+      <figure><img src="assets/print/livealone-water.webp" alt="자취생활 마스터 물 마시기 화면"><figcaption>물 마시기 챌린지</figcaption></figure>
+      <figure><img src="assets/print/livealone-stats.webp" alt="자취생활 마스터 생활 통계 화면"><figcaption>생활 통계·업적</figcaption></figure>
+    </div>
+    <ul class="p-points">
+      <li>혼자 살며 필요해서 만든 웹앱. 반복 집안일의 다음 예정일을 자동 계산하고 밀린 일을 알려 줍니다.</li>
+      <li>경험치·콤보·업적, 효과음·배경음악(Web Audio로 직접 합성) 등 게임 요소를 넣었습니다.</li>
+      <li>브라우저 저장소 기반, 데이터 형식 버전 관리와 백업·복원, 다크 모드, 자동 테스트 148개.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

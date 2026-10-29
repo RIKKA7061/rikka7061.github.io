@@ -10,6 +10,7 @@ HTML·CSS 파일을 고쳐 `main` 에 올리면(웹에서 Commit 해도) GitHub 
 배포할 때 그 게임의 **아이콘·대표 이미지·스크린샷(최대 8장)** 을 플레이스토어에서 가져와 함께 올립니다.
 
 - 첫 화면 카드: 표지가 대표 이미지(없으면 첫 스크린샷)로 바뀌고 제목 옆에 아이콘이 붙습니다.
+  표지를 누르면 플레이스토어로, 스토어 링크가 없는 게임은 그 게임의 정보 페이지로 갑니다.
 - 게임 페이지: 위쪽 이미지, 제목 옆 아이콘, 옆으로 넘겨 보는 스크린샷 모음. 링크 미리보기(카카오톡 등) 이미지도 자동 설정.
 - 스토어 링크가 없는 게임(예: 악몽회귀자)은 원래 색 표지를 그대로 씁니다.
 - 새 게임: 게임 폴더를 만들고 스토어 링크만 넣으면 다음 배포 때 이미지가 자동으로 붙습니다.
@@ -28,6 +29,9 @@ assets/site.js              화면 테마 버튼
 businessCard.html           웹 명함
 portfolio.html              예전 주소 유지용 → 첫 화면 게임 목록으로 이동 (명함 QR 이 이 주소를 가리킴)
 404.html                    없는 주소로 들어왔을 때
+print.html                  인쇄용 포트폴리오 (A4, QR 코드)
+assets/print.css            인쇄용 디자인
+assets/qr/, assets/print/   인쇄용 QR 코드, 사이드 프로젝트 화면 사진
 tools/store-images.mjs      배포 때 플레이스토어 이미지를 가져오는 스크립트
 .github/workflows/pages.yml 배포 설정 (main 에 올릴 때, 매주 월요일, 수동 실행)
 livealone/                  사이드 프로젝트 '자취생활 마스터' 데모 (LiveAlone 저장소에서 npm run build:demo 결과물)
@@ -45,6 +49,16 @@ _drafts/                    공개 전 초안 (밑줄로 시작하는 폴더라 
 | OrBit | https://rikka7061.github.io/games/orbit/ |
 | 악몽회귀자 | https://rikka7061.github.io/games/nightmare-regressor/ |
 | 판타즘 초대장 사건 | https://rikka7061.github.io/games/phantasm/ |
+
+## 인쇄용 포트폴리오 (면접 제출용)
+
+- `print.html`: A4 세로·흰 배경·사진 중심. 링크 대신 QR 코드(사이트, 게임별 페이지, 사이드 프로젝트 데모)가 들어갑니다.
+  사이트에서 열면 플레이스토어 이미지가 자동으로 채워지고, 위쪽 **인쇄하기** 버튼으로 바로 인쇄할 수 있습니다.
+- `portfolio.pdf`: 배포할 때마다 `print.html` 을 스토어 이미지까지 넣어 PDF 로 자동 생성합니다
+  (`https://rikka7061.github.io/portfolio.pdf`, `print.html` 의 **PDF 받기**). 결과는 Actions 실행 화면의 「인쇄용 PDF」 알림에 나옵니다.
+- 내용(소개, 표, 게임별 설명)은 `print.html` 을 직접 고치면 됩니다. 사진 배치는 `assets/print.css`.
+- QR 코드 이미지는 `assets/qr/` (주소가 바뀌지 않으므로 다시 만들 일은 거의 없습니다).
+- 사이드 프로젝트 화면 사진: `assets/print/livealone-*.webp`
 
 ## 사이드 프로젝트 데모 갱신
 
