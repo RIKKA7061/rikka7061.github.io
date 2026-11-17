@@ -92,7 +92,28 @@
       const text = cmd.value.trim().toLowerCase();
       cmd.Value = "";
       print('<span class="prompt">eleven:~$</span> ' + escapeHtml(text));
-      
-    }
+
+      if (text == "")
+      { 
+        // 아무것도 입력 안 할시 
+      }
+      else if (commands.hasOwnProperty(text))
+      {
+        print(commands[text]);
+      }
+      else
+      {
+        print("command not found: " + escapeHtml(text));
+      }
+
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    // 화면 아무 데나 클릭시(단, 글자 드래그 제외) -> 입력칸 커서로 이동
+    document.addEventListner("click", function()
+    {
+      if (!window.getSelection().toString()) cmd.focus();
+    });
+                               
   </script>
 </body>
