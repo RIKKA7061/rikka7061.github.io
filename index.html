@@ -81,8 +81,8 @@
     }
 
     // hello world!
-    print("Well Come.");
-    print("you can input 'help' ");
+    print("Well Come ~");
+    print("Enter 'help'");
     
     // 엔터 눌렀을 때 실행되는 것들
     cmd.addEventListener("keydown", function (e)
@@ -96,6 +96,10 @@
       if (text == "")
       { 
         // 아무것도 입력 안 할시 
+      }
+      else if (text == "clear")
+      {
+        output.innerHTML = "";
       }
       else if (commands.hasOwnProperty(text))
       {
