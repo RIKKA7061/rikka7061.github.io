@@ -138,6 +138,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .shake{animation:shake .3s}
 @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 #cursor{position:fixed;width:44px;height:44px;margin:-22px 0 0 -6px;pointer-events:none;z-index:50;display:none;filter:drop-shadow(0 3px 2px #0006)}
+#loupe{position:fixed;width:128px;height:128px;margin:-64px;border-radius:50%;overflow:hidden;pointer-events:none;z-index:48;display:none;
+  background:var(--mat);box-shadow:0 0 0 4px #fff,0 8px 18px #0007}
+#loupe .lp-in{position:absolute;inset:0}
+#loupe .lp-x{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #0008}
+#loupe .lp-tool{position:absolute;right:10px;bottom:6px;width:30px;height:30px;background:#fff;border-radius:50%;padding:4px;box-shadow:0 2px 4px #0005}
+#loupe .lp-tool svg{width:100%;height:100%}
+#ring.big{width:146px;height:146px;margin:-73px;-webkit-mask:radial-gradient(transparent 62%,#000 64%);mask:radial-gradient(transparent 62%,#000 64%)}
 #ring{position:fixed;width:56px;height:56px;margin:-28px;border-radius:50%;pointer-events:none;z-index:49;display:none;
   background:conic-gradient(#ffe14d calc(var(--p)*1%),#ffffff33 0);-webkit-mask:radial-gradient(transparent 55%,#000 57%);mask:radial-gradient(transparent 55%,#000 57%)}
 .float{position:fixed;pointer-events:none;z-index:60;font-weight:700;font-size:16px;animation:up .8s forwards;text-shadow:0 2px 0 #0006;color:#fff}
@@ -205,6 +212,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 </div>
 <div id="cursor"></div>
 <div id="ring"></div>
+<div id="loupe" aria-hidden="true"><div class="lp-in"></div><i class="lp-x"></i><span class="lp-tool"></span></div>
 
 <script>
 (() => {
@@ -491,7 +499,7 @@ function buildTray(parts){
   pick('hand');
 }
 function pick(t){ tool=t; document.querySelectorAll('.tool').forEach(b=>b.classList.toggle('sel', b.dataset.t===t));
-  $('#cursor').innerHTML = ICON[t]; sfx.tap(); }
+  $('#cursor').innerHTML = ICON[t]; $('#loupe .lp-tool').innerHTML = ICON[t]; sfx.tap(); }
 
 function startDay(){
   hud(); const D=DAYS[save.day];
@@ -537,7 +545,7 @@ function mistake(el,x,y){
   pop(x,y,'✕ 도구가 달라요','#ffb3b3');
   say(MISS[Math.floor(Math.random()*MISS.length)], Math.random()<.5?'angry':'worried');
 }
-function pop(x,y,txt,color){ const d=document.createElement('div'); d.className='float'; d.textContent=txt; d.style.left=x+'px'; d.style.top=y+'px'; if(color) d.style.color=color; document.body.appendChild(d); setTimeout(()=>d.remove(),800); }
+function pop(x,y,txt,color){ if(lpOn()){ x=parseFloat(loupe.style.left)-20; y=parseFloat(loupe.style.top)-LR-6; } const d=document.createElement('div'); d.className='float'; d.textContent=txt; d.style.left=x+'px'; d.style.top=y+'px'; if(color) d.style.color=color; document.body.appendChild(d); setTimeout(()=>d.remove(),800); }
 
 function doneTarget(el,x,y){
   const st=R.st, id=el.dataset.p;
@@ -555,10 +563,40 @@ function doneTarget(el,x,y){
 /* 입력: 탭 · 길게 누르기 · 문지르기 */
 let hold=null, rub=null;
 const ring=$('#ring'), cursor=$('#cursor');
+
+/* 돋보기: 터치하면 손가락 위쪽에 손가락 밑 부분을 크게 보여 준다 */
+const loupe=$('#loupe'), LS=2.2, LR=64;
+let lpPt=null, lpHideT=null, lpClonedAt=0;
+const lpOn = () => loupe.style.display==='block';
+function lpShow(x,y){ clearTimeout(lpHideT); lpPt={x,y}; loupe.style.display='block'; lpUpdate(true); }
+function lpMove(x,y){ if(!lpOn()) return; lpPt={x,y}; lpUpdate(performance.now()-lpClonedAt>90); }
+function lpHide(delay){ clearTimeout(lpHideT); lpHideT=setTimeout(()=>{ loupe.style.display='none'; lpPt=null; }, delay); }
+function lpUpdate(reclone){
+  const ph=$('#phone'); if(!ph||!lpPt) return;
+  const r=ph.getBoundingClientRect(), box=loupe.querySelector('.lp-in');
+  let c=box.firstChild;
+  if(reclone || !c){
+    c=ph.cloneNode(true); c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
+    c.style.cssText=`position:absolute;left:0;top:0;margin:0;width:${r.width}px;height:${r.height}px;transform-origin:0 0;transition:none`;
+    box.replaceChildren(c); lpClonedAt=performance.now();
+  }
+  c.style.transform=`translate(${LR-(lpPt.x-r.left)*LS}px,${LR-(lpPt.y-r.top)*LS}px) scale(${LS})`;
+  let cx=lpPt.x, cy=lpPt.y-LR-62;                 // 기본: 손가락 위
+  if(cy < LR+8) cy=lpPt.y+LR+62;                 // 위에 자리가 없으면 아래
+  cx=Math.max(LR+6, Math.min(innerWidth-LR-6, cx));
+  loupe.style.left=cx+'px'; loupe.style.top=cy+'px';
+  if(hold) placeRing(lpPt.x,lpPt.y);
+}
+function placeRing(x,y){
+  if(lpOn()){ ring.classList.add('big'); x=parseFloat(loupe.style.left); y=parseFloat(loupe.style.top); }
+  else ring.classList.remove('big');
+  ring.style.left=x+'px'; ring.style.top=y+'px';
+}
+
 bench.addEventListener('pointerdown', e => {
   if(!R || !R.st || R.ending) return;
-  const st=R.st, el=targetAt(e.target);
-  cursor.style.display='block'; moveCursor(e);
+  const st=R.st, el=targetAt(e.target), touch = e.pointerType!=='mouse';
+  if(touch) lpShow(e.clientX,e.clientY); else { cursor.style.display='block'; moveCursor(e); }
   if(st.act==='rub' && tool===st.t){ rub={x:e.clientX,y:e.clientY}; bench.setPointerCapture(e.pointerId); rubAt(e); return; }
   if(!el) return;
   if(tool!==st.t) return mistake(el,e.clientX,e.clientY);
@@ -567,10 +605,11 @@ bench.addEventListener('pointerdown', e => {
     const k = st.prog[el.dataset.p] = (st.prog[el.dataset.p]||0)+1;
     st.tap && st.tap(el,k); sfx.tap();
     if(k >= (st.n||1)) doneTarget(el,e.clientX,e.clientY);
+    if(touch) lpUpdate(true);
   } else if(st.act==='hold'){
     bench.setPointerCapture(e.pointerId);
     hold={el, x:e.clientX, y:e.clientY, last:performance.now()};
-    ring.style.left=e.clientX+'px'; ring.style.top=e.clientY+'px'; ring.style.display='block';
+    placeRing(e.clientX,e.clientY); ring.style.display='block';
     holdTick();
   }
 });
@@ -580,7 +619,7 @@ function holdTick(){
   st.prog[id]=(st.prog[id]||0)+(now-hold.last); hold.last=now;
   const p=Math.min(100, st.prog[id]/st.ms*100); ring.style.setProperty('--p',p);
   if(Math.random()<.15) beep(300+p*6,.04,'square',.02);
-  if(p>=100){ const h=hold; endHold(); doneTarget(h.el,h.x,h.y); return; }
+  if(p>=100){ const h=hold; endHold(); doneTarget(h.el,h.x,h.y); if(lpOn()) lpUpdate(true); return; }
   requestAnimationFrame(holdTick);
 }
 function endHold(){ hold=null; ring.style.display='none'; }
@@ -595,12 +634,12 @@ function rubAt(e){
 }
 function moveCursor(e){ cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; }
 bench.addEventListener('pointermove', e => {
-  if(e.pointerType==='mouse') cursor.style.display='block';
-  moveCursor(e);
+  if(e.pointerType==='mouse'){ cursor.style.display='block'; moveCursor(e); }
   if(rub && R && R.st) rubAt(e);
-  if(hold){ ring.style.left=e.clientX+'px'; ring.style.top=e.clientY+'px'; }
+  if(e.pointerType!=='mouse') lpMove(e.clientX,e.clientY);
+  else if(hold) placeRing(e.clientX,e.clientY);
 });
-const up = e => { rub=null; endHold(); if(e.pointerType!=='mouse') cursor.style.display='none'; };
+const up = e => { rub=null; endHold(); if(e.pointerType!=='mouse'){ if(lpOn()) lpUpdate(true); lpHide(260); } };
 bench.addEventListener('pointerup', up); bench.addEventListener('pointercancel', up);
 bench.addEventListener('pointerleave', e => { if(e.pointerType==='mouse' && !hold && !rub) cursor.style.display='none'; });
 
