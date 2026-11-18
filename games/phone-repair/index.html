@@ -172,6 +172,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .title h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,10vw,52px);margin:0;color:#5a3a6a;text-align:center;line-height:1.1;text-shadow:0 4px 0 #fff8}
 .title p.sub{margin:8px 0 18px;color:#8a5a8a;font-weight:600}
 .title .girl{width:min(56vw,230px)}
+.end-girl{width:150px;margin:6px auto}
+img.girl-img{display:block;aspect-ratio:1;object-fit:cover;border-radius:22%;border:3px solid #fff;background:#fff}
+.talk img.girl-img{border-radius:24px;border-width:5px;margin-bottom:10px}
+.title img.girl-img{width:min(52vw,210px);margin-bottom:10px;transform:rotate(-3deg)}
 .title .card{background:#fff8eef0}
 .home{position:absolute;left:12px;top:10px;color:#6b3f27;font-size:13px;text-decoration:none;font-weight:600}
 @media (max-height:640px){.cust{min-height:70px}.cust .girl{width:62px}.bubble{font-size:13px}.tool{height:54px}.tool svg{width:24px;height:24px}}
@@ -275,8 +279,24 @@ const FACES = {
   shy:['b-s','e-side','m-w','bl2'], smug:['b-n','e-half','m-sm']
 };
 const girls = ['#girlS','#girlB','#girlT'].map(s => { const el=$(s); el.innerHTML=GIRL; return el; });
+/* 일러스트(img/emily_*.webp)가 있으면 그림으로, 못 불러오면 SVG로 표시 */
+const IMG = f => 'img/emily_' + (FACES[f]?f:'normal') + '.webp';
+let useImg = true;
+Object.keys(FACES).forEach(f => { const im=new Image(); im.onerror=()=>{ useImg=false; document.querySelectorAll('img.girl-img').forEach(i=>i.remove()); document.querySelectorAll('svg.girl').forEach(s=>s.style.display=''); }; im.src=IMG(f); });
+function portrait(svg){
+  if(!useImg) return null;
+  let im = svg.previousElementSibling;
+  if(!im || !im.classList.contains('girl-img')){
+    im=document.createElement('img'); im.alt=''; im.className=svg.getAttribute('class')+' girl-img';
+    svg.parentNode.insertBefore(im, svg); svg.style.display='none';
+  }
+  return im;
+}
 function face(f, els=girls){ const on=FACES[f]||FACES.normal;
-  els.forEach(el => el.querySelectorAll('[data-g]').forEach(g => g.style.display = on.includes(g.dataset.g)?'':'none')); }
+  els.forEach(el => {
+    el.querySelectorAll('[data-g]').forEach(g => g.style.display = on.includes(g.dataset.g)?'':'none');
+    const im=portrait(el); if(im) im.src=IMG(f);
+  }); }
 face('smug');
 
 /* ---------- 소리 ---------- */
@@ -699,7 +719,7 @@ function ending(){
   face('happy');
   $('#resultCard').innerHTML = `
     <h2>THE END</h2>
-    <svg viewBox="0 0 120 130" style="width:140px">${GIRL}</svg>
+    <svg class="girl end-girl" viewBox="0 0 120 130">${GIRL}</svg>
     <p style="margin:6px 0 0">에밀리의 폰은 오늘도 잘 켜집니다.</p>
     <div class="rows"><span>모은 돈</span><b>${won(save.money)}</b><span>별</span><b>★ ${total} / ${DAYS.length*3}</b></div>
     <button class="btn" id="againBtn">처음부터 다시</button>
