@@ -267,3 +267,10 @@ a { color: var(--link); text-underline-offset: 3px; }
 .game .img-link:hover .cover { filter: brightness(1.05); }
 .detail .img-link, .crumb + .img-link { margin-top: 14px; border-radius: 18px; }
 .crumb + .img-link .detail-cover { margin-top: 0; }
+
+/* 웹게임: 고쳐줘요, 사장님! */
+.cover-phonefix { --cover: linear-gradient(135deg, #b39ddb, #f48fb1); }
+.cover-phonefix::before { background: radial-gradient(circle at 50% 50%, #fff 0 2.5px, transparent 3.5px) 0 0 / 26px 26px; opacity: 0.3; }
+.cover-phonefix .cover-emoji { position: absolute; right: 18px; bottom: 6px; font-size: 3.4rem; transform: rotate(-12deg); filter: drop-shadow(0 4px 0 rgba(0,0,0,.15)); }
+.game .play { background: var(--accent); color: #fff; border-radius: 10px; padding: 0 16px; text-decoration: none; }
+.game .play:hover { background: var(--accent-ink); }

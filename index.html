@@ -1,53 +1,143 @@
-<!DOCTYPE html>
-<html lang ="ko">
-  <head>
-    <meta charset="UTF-8">
-    <title>탭 제목</title>
-    <style>
-      body {
-        background-color: black;
-        color: white
-      }
-      p {
-        font-size: 40px;
-      }
-      .box {
-        width: 500px;       /* 고정 너비 500px */
-        max-width: 100%;    /* 화면이 500px보다 작아지면 화면에 맞춤 */
-      }
-    </style>
-  </head>
-  <body>
-    <p>&lt;!DOCTYPE html&gt;은 html5로 작성 됬다는 선언</p>
-    <p>만일 저거를 안쓴다면 css레이아웃이 이상하게 나올수 있습니다</p>
-    <br>
-    
-    <p>문단에 오른쪽이 크다는 꺽쇠는 앰퍼샌드lt;</p>
-    <p>문단에 왼쪽이 크다는 꺽쇠는 엠퍼센드gt;를 입력해야 html 화면에 보이게 할수 있습니다.</p>
-    <p>&lt;br&gt;은 한칸 뛰어써집니다.</p>
-    <br>
-    
-    <p>&lt;html lang="ko"&gt;는 이 페이지는 한국어로 작성 됬다는 뜻</p>
-    <p>이걸 써두면</p>
-    <p>스크린 리더가 한국 발음으로 읽어요</p>
-    <p>브라우저 번역 기능이 언어를 제대로 인식해요</p>
-    <p>검색엔진도 페이지 언어를 파악해요</p>
-    <br>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eleven · 게임</title>
+  <meta name="description" content="Eleven이 만든 게임 모음. 브라우저에서 바로 하는 웹 게임과 모바일·PC 게임.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Eleven · 게임">
+  <meta property="og:description" content="Eleven이 만든 게임 모음. 브라우저에서 바로 하는 웹 게임과 모바일·PC 게임.">
+  <meta property="og:url" content="https://eleven.me.kr/">
+  <link rel="canonical" href="https://eleven.me.kr/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <script>try{var t=localStorage.getItem('rikka-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html">elev<b>en</b></a>
+    <nav class="topnav" aria-label="사이트 메뉴">
+      <a href="#web">웹 게임</a>
+      <a class="hide-sm" href="#games">모바일·PC</a>
+      <a href="#contact">연락</a>
+      <button type="button" class="theme-btn" aria-label="화면 테마 바꾸기">🖥️</button>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Eleven Games</p>
+      <h1>바로 하는 게임</h1>
+      <p class="lead">설치 없이 브라우저에서 바로 하는 웹 게임을 올리는 곳이에요. 휴대폰과 PC 모두 됩니다.</p>
+      <p class="actions">
+        <a class="btn btn-primary" href="games/phone-repair/">새 게임 해 보기</a>
+        <a class="btn btn-line" href="#games">모바일·PC 게임</a>
+      </p>
+    </div>
+  </section>
 
-    <p>&lt;head&gt;는 페이지에 대한 정보를 넣는 곳이에요</p>
-    <p>글자 인코딩, 브라우저 탭 제목 등이 들어가요</p>
-    <br>
-    
-    <p>브라우저의 이 파일의 글자는 'UTF-8' 방식으로 저장합니다: 한글·영어·이모지까지 거의 모든 문자를 담는 표준 방식</p>
-    <br>
+  <section class="section" id="web" aria-labelledby="web-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="web-title">웹 게임</h2>
+        <p class="note">누르면 바로 시작해요.</p>
+      </div>
+      <ul class="games">
+      <li class="game">
+        <div class="cover cover-phonefix" aria-hidden="true">
+          <span class="cover-genre">수리 · 스토리</span>
+          <span class="cover-title">고쳐줘요,<br>사장님!</span>
+          <span class="cover-emoji">📱</span>
+        </div>
+        <div class="game-body">
+          <h3><a href="games/phone-repair/">고쳐줘요, 사장님!</a></h3>
+          <ul class="tags" aria-label="특징"><li class="status">NEW</li><li>수리</li><li>스토리</li><li>싱글플레이</li><li>웹 · 모바일</li></ul>
+          <p class="role">작은 휴대폰 수리점에 매일 찾아오는 츤데레 소녀 에밀리. 5일 동안 그녀의 폰을 고쳐 주세요.</p>
+          <p class="links"><a class="play" href="games/phone-repair/">▶ 플레이</a></p>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </section>
 
-    <p>&lt;title&gt;탭 제목&lt;/title&gt;</p>
-    <p>브라우저 탭의 제목을 나타냅니다.</p>
-    <br>
+  <section class="section" id="games" aria-labelledby="games-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="games-title">모바일 · PC 게임</h2>
+        <p class="note">팀으로 만든 게임이에요. 게임마다 소개·다운로드 페이지가 있어요.</p>
+      </div>
+      <ul class="games">
+      <li class="game">
+        <div class="cover cover-dna" aria-hidden="true">
+          <span class="cover-genre">뱀서라이크</span>
+          <span class="cover-title">DNA</span>
+        </div>
+        <div class="game-body">
+          <h3><a href="games/dna/">DNA</a></h3>
+          <ul class="tags" aria-label="특징"><li class="status">플레이스토어 출시</li><li>뱀서라이크</li><li>2D</li><li>모바일 (Android)</li><li>Unity</li></ul>
+          <p class="links"><a href="games/dna/">자세히 보기 →</a><a href="https://play.google.com/store/apps/details?id=com.SixRules.DNA" target="_blank" rel="noopener">플레이스토어 ↗</a></p>
+        </div>
+      </li>
+      <li class="game">
+        <div class="cover cover-orbit" aria-hidden="true">
+          <span class="cover-genre">아케이드 러너</span>
+          <span class="cover-title">OrBit</span>
+        </div>
+        <div class="game-body">
+          <h3><a href="games/orbit/">OrBit</a></h3>
+          <ul class="tags" aria-label="특징"><li class="status">플레이스토어 출시</li><li>아케이드 러너</li><li>3D</li><li>모바일 (Android)</li><li>Unity</li></ul>
+          <p class="links"><a href="games/orbit/">자세히 보기 →</a><a href="https://play.google.com/store/apps/details?id=com.DefaultCompany.Orbit" target="_blank" rel="noopener">플레이스토어 ↗</a></p>
+        </div>
+      </li>
+      <li class="game">
+        <div class="cover cover-phantasm" aria-hidden="true">
+          <span class="cover-genre">텍스트 RPG</span>
+          <span class="cover-title">판타즘 초대장 사건</span>
+        </div>
+        <div class="game-body">
+          <h3><a href="games/phantasm/">판타즘 초대장 사건</a></h3>
+          <ul class="tags" aria-label="특징"><li class="status">플레이스토어 출시</li><li>텍스트 RPG</li><li>2D</li><li>모바일 (Android)</li><li>Unity</li></ul>
+          <p class="links"><a href="games/phantasm/">자세히 보기 →</a><a href="https://play.google.com/store/apps/details?id=com.DefaultCompany.TextRpg_test" target="_blank" rel="noopener">플레이스토어 ↗</a></p>
+        </div>
+      </li>
+      <li class="game">
+        <div class="cover cover-nightmare" aria-hidden="true">
+          <span class="cover-genre">로그라이크</span>
+          <span class="cover-title">악몽회귀자</span>
+        </div>
+        <div class="game-body">
+          <h3><a href="games/nightmare-regressor/">악몽회귀자</a></h3>
+          <ul class="tags" aria-label="특징"><li>로그라이크</li><li>2D 쿼터뷰</li><li>PC</li><li>Unity</li></ul>
+          <p class="links"><a href="games/nightmare-regressor/">자세히 보기 →</a></p>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </section>
 
-    <p>&amp;를 나타내려면&amp; + amp를 적어주셔야 됩니다</p>
-    <br>
-    
-    <p>헤더(페이지 설정)안에 style을 안에 배경색과 글자색을 변경할수 있습니다.</p>
-  </body>
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2 id="contact-title">연락</h2>
+        <p>게임 소감, 버그 제보, 협업 제안 모두 메일로 보내 주세요.</p>
+        <p class="actions"><a class="btn btn-primary" href="mailto:hdgehsdj.sn@gmail.com">메일 보내기</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> Eleven</span>
+    <span><a href="portfolio/">포트폴리오</a> · <a href="notes/html-basics.html">HTML 공부 노트</a></span>
+  </div>
+</footer>
+</body>
 </html>
