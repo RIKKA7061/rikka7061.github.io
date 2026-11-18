@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>고쳐줘요, 사장님!</title>
-<meta name="description" content="작은 휴대폰 수리점에 매일 찾아오는 소녀의 폰을 고쳐 주는 웹 게임.">
+<meta name="description" content="작은 휴대폰 수리점에 매일 찾아오는 소녀 에밀리의 폰을 고쳐 주는 웹 게임.">
 <meta property="og:title" content="고쳐줘요, 사장님!">
-<meta property="og:description" content="작은 휴대폰 수리점에 매일 찾아오는 소녀의 폰을 고쳐 주는 웹 게임.">
+<meta property="og:description" content="작은 휴대폰 수리점에 매일 찾아오는 소녀 에밀리의 폰을 고쳐 주는 웹 게임.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
 <style>
 :root{
-  --wood:#c98f5a; --wood2:#b07a48; --mat:#2f6b5a; --mat2:#3a7d69;
-  --ink:#2a1f1a; --paper:#fff8ee; --pink:#ff7aa2; --accent:#ff8a3d; --ok:#3bb273; --bad:#e5484d;
+  --wood:#d8b6c8; --wood2:#c9a2b8; --mat:#2f6b5a; --mat2:#3a7d69;
+  --ink:#2a1f1a; --paper:#fff8ee; --pink:#e86f98; --accent:#ff8a3d; --ok:#3bb273; --bad:#e5484d;
   --display:'Black Han Sans','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   --body:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html,body{margin:0;height:100%;background:#3a2a20;color:var(--ink);font-family:var(--body);
+html,body{margin:0;height:100%;background:#4a3a52;color:var(--ink);font-family:var(--body);
   -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 #app{position:relative;max-width:560px;height:100dvh;margin:0 auto;display:grid;
@@ -28,7 +28,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   background:repeating-linear-gradient(90deg,var(--wood) 0 38px,var(--wood2) 38px 40px);overflow:hidden}
 
 /* 상단 바 */
-.top{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#2a1f1a;color:#ffe9d2;font-size:14px}
+.top{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#3d2c4a;color:#ffeef6;font-size:14px}
 .top .day{font-family:var(--display);font-size:18px;letter-spacing:.5px}
 .top .sp{flex:1}
 .top .chip{background:#ffffff1a;border-radius:99px;padding:3px 10px;font-variant-numeric:tabular-nums}
@@ -47,7 +47,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   linear-gradient(#ffffff10 1px,transparent 1px) 0 0/20px 20px,
   linear-gradient(90deg,#ffffff10 1px,transparent 1px) 0 0/20px 20px,var(--mat);
   box-shadow:inset 0 0 0 3px #00000022;touch-action:none;display:grid;place-items:center;overflow:hidden;min-height:0}
-.stepbar{margin:0 10px;background:#2a1f1aee;color:#fff;border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:14px}
+.stepbar{margin:0 10px;background:#3d2c4aee;color:#fff;border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:14px}
 .stepbar .num{font-variant-numeric:tabular-nums;color:#ffd29a;font-weight:700;flex:none}
 .stepbar .txt{flex:1}
 .stepbar button{border:0;background:#ffffff22;color:#fff;border-radius:99px;padding:4px 10px;font-size:13px;flex:none}
@@ -161,9 +161,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .rows b{text-align:right;font-variant-numeric:tabular-nums}
 .btn{display:block;width:100%;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;font-size:17px;padding:13px;box-shadow:0 4px 0 #b65a1c;margin-top:10px}
 .btn.line{background:#fff;color:var(--ink);box-shadow:0 4px 0 #0002,0 0 0 2px #ddd inset}
-.title{justify-content:center;background:radial-gradient(circle at 50% 30%,#ffe2c4,#e8a979)}
-.title h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,10vw,52px);margin:0;color:#3a2318;text-align:center;line-height:1.1;text-shadow:0 4px 0 #fff8}
-.title p.sub{margin:8px 0 18px;color:#6b3f27;font-weight:600}
+.title{justify-content:center;background:radial-gradient(circle at 50% 30%,#fff0f5,#d9c6ec)}
+.title h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,10vw,52px);margin:0;color:#5a3a6a;text-align:center;line-height:1.1;text-shadow:0 4px 0 #fff8}
+.title p.sub{margin:8px 0 18px;color:#8a5a8a;font-weight:600}
 .title .girl{width:min(56vw,230px)}
 .title .card{background:#fff8eef0}
 .home{position:absolute;left:12px;top:10px;color:#6b3f27;font-size:13px;text-decoration:none;font-weight:600}
@@ -180,7 +180,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   </div>
   <div class="cust">
     <svg class="girl" id="girlS" viewBox="0 0 120 130" aria-hidden="true"></svg>
-    <div class="bubble" id="bubble" aria-live="polite"><span class="who">하나</span><span id="bubbleTxt">…</span></div>
+    <div class="bubble" id="bubble" aria-live="polite"><span class="who">에밀리</span><span id="bubbleTxt">…</span></div>
   </div>
   <div class="bench" id="bench"></div>
   <div class="stepbar"><span class="num" id="stepNum">0/0</span><span class="txt" id="stepTxt">준비 중</span><button id="hintBtn">힌트</button></div>
@@ -188,7 +188,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   <div class="ov talk" id="talk" hidden>
     <svg class="girl bigirl" id="girlB" viewBox="0 0 120 130" aria-hidden="true"></svg>
-    <div class="box"><span class="who" id="talkWho">하나</span><div id="talkTxt"></div><span class="next">▼ 탭해서 계속</span></div>
+    <div class="box"><span class="who" id="talkWho">에밀리</span><div id="talkTxt"></div><span class="next">▼ 탭해서 계속</span></div>
   </div>
   <div class="ov" id="result" hidden><div class="card" id="resultCard"></div></div>
   <div class="ov title" id="title">
@@ -211,35 +211,65 @@ button{font:inherit;color:inherit;cursor:pointer}
 'use strict';
 const $ = s => document.querySelector(s);
 
-/* ---------- 소녀 그림 (오리지널 캐릭터 '하나') ---------- */
+/* ---------- 소녀 그림: 에밀리 (사용자 캐릭터 디자인 기반) ---------- */
 const GIRL = `
-<path d="M22 70 Q14 30 60 18 Q106 30 98 70 L102 118 Q60 128 18 118Z" fill="#4a2e2a"/>
-<path d="M30 130 Q32 100 60 98 Q88 100 90 130Z" fill="#9ec5ff"/>
-<path d="M48 100 L60 116 L72 100Z" fill="#fff"/>
-<path d="M56 104 L60 112 L64 104 L60 101Z" fill="#ff7aa2"/>
-<rect x="53" y="82" width="14" height="18" rx="6" fill="#ffd9c7"/>
-<ellipse cx="60" cy="58" rx="28" ry="30" fill="#ffe6d6"/>
-<path d="M30 58 Q28 26 60 24 Q92 26 90 58 Q84 40 72 36 Q70 46 58 44 Q60 38 54 36 Q44 46 30 58Z" fill="#5a3632"/>
-<path d="M88 34 l6 -6 l2 8 l-8 0z" fill="#ffd34d" stroke="#e0a800" stroke-width="1"/>
-<ellipse cx="44" cy="70" rx="6" ry="3.5" fill="#ff9bb5" opacity=".55"/>
-<ellipse cx="76" cy="70" rx="6" ry="3.5" fill="#ff9bb5" opacity=".55"/>
-<g data-g="b-n" stroke="#4a2e2a" stroke-width="2" stroke-linecap="round" fill="none"><path d="M42 49 Q47 46 52 48"/><path d="M68 48 Q73 46 78 49"/></g>
-<g data-g="b-s" stroke="#4a2e2a" stroke-width="2" stroke-linecap="round" fill="none"><path d="M42 47 Q47 48 52 51"/><path d="M68 51 Q73 48 78 47"/></g>
-<g data-g="e-o"><ellipse cx="48" cy="60" rx="5" ry="6.5" fill="#3a2a4a"/><ellipse cx="72" cy="60" rx="5" ry="6.5" fill="#3a2a4a"/><circle cx="50" cy="57.5" r="2" fill="#fff"/><circle cx="74" cy="57.5" r="2" fill="#fff"/></g>
-<g data-g="e-h" stroke="#3a2a4a" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M43 61 Q48 55 53 61"/><path d="M67 61 Q72 55 77 61"/></g>
-<g data-g="m-s"><path d="M55 75 Q60 79 65 75" stroke="#c0505a" stroke-width="2" fill="none" stroke-linecap="round"/></g>
-<g data-g="m-g"><path d="M53 74 Q60 84 67 74Z" fill="#c0505a"/></g>
-<g data-g="m-o"><ellipse cx="60" cy="77" rx="3.5" ry="4" fill="#c0505a"/></g>
-<g data-g="m-d"><path d="M55 78 Q60 74 65 78" stroke="#c0505a" stroke-width="2" fill="none" stroke-linecap="round"/></g>
-<g data-g="sw"><path d="M86 52 q4 6 0 9 q-4 -3 0 -9z" fill="#8fd0ff"/></g>`;
+<path d="M23 62 Q19 20 60 15 Q101 20 97 62 L99 90 Q92 97 85 89 L35 89 Q28 97 21 90Z" fill="#a993d1"/>
+<path d="M18 130 Q19 106 40 100 L47 130Z" fill="#f1e2c6"/><path d="M102 130 Q101 106 80 100 L73 130Z" fill="#f1e2c6"/>
+<path d="M22 118 q4 -2 8 0 M95 116 q-4 -2 -8 0" stroke="#f08aaa" stroke-width="2" fill="none"/>
+<path d="M40 130 Q42 103 60 101 Q78 103 80 130Z" fill="#fffaf5"/>
+<path d="M45 104 q3 4 6 0 q3 4 6 0 q3 4 6 0 q3 4 6 0 q3 4 6 0" stroke="#f3d9df" stroke-width="2" fill="none"/>
+<rect x="54" y="84" width="12" height="18" rx="6" fill="#ffdccd"/>
+<ellipse cx="60" cy="59" rx="27" ry="29" fill="#ffe9de"/>
+<path d="M56 103 l-7 -4 v8z M64 103 l7 -4 v8z" fill="#f07a9e"/><circle cx="60" cy="103" r="2.6" fill="#e0607f"/>
+<path d="M58 105 l-3 9 M62 105 l3 9" stroke="#f07a9e" stroke-width="1.6"/>
+<path d="M33 44 Q25 68 30 92 Q39 87 41 70Z" fill="#b6a1db"/><path d="M87 44 Q95 68 90 92 Q81 87 79 70Z" fill="#b6a1db"/>
+<path d="M28 62 Q27 23 60 21 Q93 23 92 62 Q89 49 84 43 L82 56 Q76 44 69 40 L66 55 Q61 42 55 40 L51 56 Q46 44 41 44 L38 55 Q34 51 28 62Z" fill="#b6a1db"/>
+<path d="M69 41 Q72 48 72 55 M89 62 Q92 76 89 89 M38 44 Q34 52 33 60" stroke="#f4a3c4" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M44 30 Q52 26 60 26" stroke="#d6c8ee" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<g transform="translate(83 37)"><ellipse cx="-3" cy="-8" rx="2.4" ry="5.5" fill="#fff" stroke="#e8c9d3"/><ellipse cx="3" cy="-8" rx="2.4" ry="5.5" fill="#fff" stroke="#e8c9d3"/>
+<ellipse cx="-3" cy="-8" rx="1" ry="3.5" fill="#ffc2d4"/><ellipse cx="3" cy="-8" rx="1" ry="3.5" fill="#ffc2d4"/>
+<circle r="6" fill="#fff" stroke="#e8c9d3"/><circle cx="-2" cy="-.5" r=".9" fill="#5a4048"/><circle cx="2" cy="-.5" r=".9" fill="#5a4048"/>
+<path d="M-4 8 l8 6 M4 8 l-8 6" stroke="#f07a9e" stroke-width="2" stroke-linecap="round"/></g>
+<ellipse cx="44" cy="71" rx="6" ry="3.2" fill="#ff9fba" opacity=".55"/><ellipse cx="76" cy="71" rx="6" ry="3.2" fill="#ff9fba" opacity=".55"/>
+<g data-g="bl2" stroke="#ff7fa3" stroke-width="1.2" stroke-linecap="round"><path d="M40 69l2-3M44 70l2-3M48 69l2-3M72 69l2-3M76 70l2-3M80 69l2-3"/></g>
+<g data-g="b-n" stroke="#7d68a8" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M42 49 Q47 47 52 48.5"/><path d="M68 48.5 Q73 47 78 49"/></g>
+<g data-g="b-s" stroke="#7d68a8" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M42 48 Q47 48.5 52 51"/><path d="M68 51 Q73 48.5 78 48"/></g>
+<g data-g="b-a" stroke="#7d68a8" stroke-width="2" stroke-linecap="round" fill="none"><path d="M42 47 Q47 49 52 52"/><path d="M68 52 Q73 49 78 47"/></g>
+<g data-g="e-o"><path d="M42 56 Q48 52 54 56 M66 56 Q72 52 78 56" stroke="#4a2a3e" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="48" cy="62" rx="5.4" ry="6.8" fill="#8f3b5f"/><ellipse cx="72" cy="62" rx="5.4" ry="6.8" fill="#8f3b5f"/>
+<ellipse cx="48" cy="65" rx="3.8" ry="3.4" fill="#e486a6"/><ellipse cx="72" cy="65" rx="3.8" ry="3.4" fill="#e486a6"/>
+<circle cx="50" cy="59" r="2.2" fill="#fff"/><circle cx="74" cy="59" r="2.2" fill="#fff"/><circle cx="46.5" cy="65.5" r="1" fill="#fff"/><circle cx="70.5" cy="65.5" r="1" fill="#fff"/></g>
+<g data-g="e-side"><path d="M42 56 Q48 52 54 56 M66 56 Q72 52 78 56" stroke="#4a2a3e" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="45.5" cy="62" rx="4.8" ry="6.4" fill="#8f3b5f"/><ellipse cx="69.5" cy="62" rx="4.8" ry="6.4" fill="#8f3b5f"/>
+<ellipse cx="45.5" cy="65" rx="3.2" ry="3" fill="#e486a6"/><ellipse cx="69.5" cy="65" rx="3.2" ry="3" fill="#e486a6"/>
+<circle cx="47" cy="59.5" r="1.8" fill="#fff"/><circle cx="71" cy="59.5" r="1.8" fill="#fff"/></g>
+<g data-g="e-half"><path d="M42 59 Q48 57 54 59 M66 59 Q72 57 78 59" stroke="#4a2a3e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M43.5 59.5 h9 a4.5 4.8 0 0 1 -9 0z M67.5 59.5 h9 a4.5 4.8 0 0 1 -9 0z" fill="#8f3b5f"/><circle cx="50" cy="61" r="1.3" fill="#fff"/><circle cx="74" cy="61" r="1.3" fill="#fff"/></g>
+<g data-g="e-h" stroke="#4a2a3e" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M43 63 Q48 57 53 63"/><path d="M67 63 Q72 57 77 63"/></g>
+<g data-g="m-p"><path d="M56.5 78 Q60 76.8 63.5 78" stroke="#c4566a" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>
+<g data-g="m-g"><path d="M53.5 75 Q60 85 66.5 75Z" fill="#c4566a"/><path d="M56 79.5 Q60 82 64 79.5" stroke="#ff9fb3" stroke-width="1.6" fill="none"/></g>
+<g data-g="m-o"><ellipse cx="60" cy="78" rx="3" ry="3.6" fill="#c4566a"/></g>
+<g data-g="m-w"><path d="M55 78.5 q2.5 -2 5 0 q2.5 2 5 0" stroke="#c4566a" stroke-width="1.7" fill="none" stroke-linecap="round"/></g>
+<g data-g="m-f"><path d="M55.5 79.5 Q60 75.5 64.5 79.5" stroke="#c4566a" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>
+<g data-g="m-sm"><path d="M55 77 Q61 80 65.5 75.5" stroke="#c4566a" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M62 78.2 l1 2.2 1-2.6z" fill="#fff"/></g>
+<g data-g="tear" fill="#9fd6ff"><path d="M42 67 q-2.4 5 0 6.5 q2.4 -1.5 0 -6.5z"/><path d="M78 67 q-2.4 5 0 6.5 q2.4 -1.5 0 -6.5z"/></g>
+<g data-g="sw"><path d="M85 52 q4 6 0 9 q-4 -3 0 -9z" fill="#9fd6ff"/></g>
+<g data-g="anger" transform="translate(30 30)" stroke="#e5484d" stroke-width="2" fill="none" stroke-linecap="round"><path d="M-5 -2 q3 0 3 -3 M5 -2 q-3 0 -3 -3 M-5 2 q3 0 3 3 M5 2 q-3 0 -3 3"/></g>
+<g transform="translate(37 118)"><ellipse cx="-4.5" cy="-13" rx="3.4" ry="8" fill="#fff" stroke="#ead6dc"/><ellipse cx="4.5" cy="-13" rx="3.4" ry="8" fill="#fff" stroke="#ead6dc"/>
+<ellipse cx="-4.5" cy="-13" rx="1.4" ry="5" fill="#ffd0dc"/><ellipse cx="4.5" cy="-13" rx="1.4" ry="5" fill="#ffd0dc"/>
+<circle r="11" fill="#fff" stroke="#ead6dc"/><circle cx="-3.5" cy="-1" r="1.2" fill="#5a4048"/><circle cx="3.5" cy="-1" r="1.2" fill="#5a4048"/>
+<path d="M-1.5 2 q1.5 1.5 3 0" stroke="#5a4048" stroke-width=".9" fill="none"/><ellipse cx="-6.5" cy="3" rx="2" ry="1.2" fill="#ffb3c6"/><ellipse cx="6.5" cy="3" rx="2" ry="1.2" fill="#ffb3c6"/>
+<path d="M0 10 l-5 -3 v6z M0 10 l5 -3 v6z" fill="#f07a9e"/></g>
+<path d="M44 130 Q44 112 52 110 Q58 112 56 130Z" fill="#f1e2c6"/>`;
 const FACES = {
-  normal:['b-n','e-o','m-s'], happy:['b-n','e-h','m-g'], sad:['b-s','e-o','m-d'],
-  surprised:['b-n','e-o','m-o'], worried:['b-s','e-o','m-o','sw']
+  normal:['b-n','e-o','m-p'], happy:['b-n','e-h','m-g'], sad:['b-s','e-o','m-w','tear'],
+  surprised:['b-n','e-o','m-o'], worried:['b-s','e-o','m-w','sw'], angry:['b-a','e-o','m-f','anger'],
+  shy:['b-s','e-side','m-w','bl2'], smug:['b-n','e-half','m-sm']
 };
 const girls = ['#girlS','#girlB','#girlT'].map(s => { const el=$(s); el.innerHTML=GIRL; return el; });
 function face(f, els=girls){ const on=FACES[f]||FACES.normal;
   els.forEach(el => el.querySelectorAll('[data-g]').forEach(g => g.style.display = on.includes(g.dataset.g)?'':'none')); }
-face('happy');
+face('smug');
 
 /* ---------- 소리 ---------- */
 let AC, muted=false;
@@ -333,27 +363,27 @@ const G = (text,f='normal') => ({who:'g',text,f}), ME = text => ({who:'me',text}
 const DAYS = [
   { name:'부푼 배터리', view:'back', parts:['part-battery'], par:60, pay:30000,
     setup(){ add('battery','swollen'); },
-    intro:[ SYS('딸랑— 오늘의 첫 손님이 들어왔다.'),
-      G('저기… 여기 휴대폰 고치는 곳 맞죠?','worried'),
-      ME('네, 어서 오세요. 어디가 아파서 왔을까요?'),
-      G('배터리가 금방 닳고… 뒷면이 이상하게 볼록해졌어요.','sad'),
-      G('언니가 유학 가면서 물려준 폰이라, 꼭 고치고 싶어요.','normal'),
-      ME('배터리가 부풀었네요. 바로 바꿔 드릴게요.') ],
+    intro:[ SYS('딸랑— 토끼 인형을 꼭 안은 소녀가 문 앞에서 머뭇거린다.'),
+      G('…여기, 폰 고치는 데 맞지?','normal'),
+      ME('네, 어서 오세요. 어디가 고장 났어요?'),
+      G('배터리가 금방 닳아. 뒷면도 이상하게 볼록하고.','worried'),
+      G('딱히 소중한 폰이라서 그런 건 아니거든! …그냥, 언니가 준 거라서.','shy'),
+      ME('배터리가 부풀었네요. 바로 바꿔 줄게요.') ],
     steps:()=>[ ...openBack(),
       {t:'tweezers', ids:['battery'], act:'hold', ms:1100, label:'핀셋으로 부푼 배터리 길게 잡아 떼어내기', done:()=>add('battery','gone')},
       {t:'part-battery', ids:['slot-battery'], act:'tap', n:1, label:'새 배터리를 빈 자리에 넣기',
         each:()=>{ rem('battery','gone'); rem('battery','swollen'); add('battery','new'); }},
       ...closeBack(), power() ],
     boot:'battery',
-    outro:[ G('와, 켜졌다! 배터리 100%예요!','happy'), G('정말 감사합니다. 저는 하나라고 해요.','happy'), G('…내일 또 올지도 몰라요. 하하.','normal') ] },
+    outro:[ G('켜졌다…! 100%야!','happy'), G('…고, 고마워. 난 에밀리야. 이름 정도는 알려 줄게.','shy'), G('흥, 내일 또 올지도 모르니까 각오해.','smug') ] },
 
   { name:'깨진 화면', view:'front', parts:['part-screen'], par:55, pay:45000,
     setup(){ add('screen','cracked'); },
-    intro:[ SYS('딸랑— 익숙한 얼굴이다.'),
-      G('안녕하세요… 저 또 왔어요.','worried'),
-      G('계단에서 떨어뜨려서 화면이 깨져 버렸어요.','sad'),
-      G('언니한테 메시지가 왔는데 하나도 안 보여요…','sad'),
-      ME('화면 통째로 바꾸면 돼요. 걱정 마세요.') ],
+    intro:[ SYS('딸랑— 익숙한 토끼 머리핀이 보인다.'),
+      G('…또 왔어. 뭐, 불만 있어?','angry'),
+      G('계단에서 떨어뜨렸어. 화면이 다 깨졌어…','sad'),
+      G('언니한테 메시지 왔는데, 하나도 안 보여.','sad'),
+      ME('화면만 통째로 바꾸면 돼요. 걱정 마요.') ],
     steps:()=>[
       {t:'heat', ids:['screen'], act:'hold', ms:1600, label:'열풍기로 화면을 데워 접착제 녹이기', done:()=>add('screen','warm')},
       {t:'spudger', ids:['screen'], act:'hold', ms:1100, label:'헤라로 화면 길게 눌러 들어 올리기', done:()=>{ add('screen','off'); rem('screen','cracked'); rem('screen','warm'); }},
@@ -363,13 +393,13 @@ const DAYS = [
         done:()=>{ const s=q('screen'); s.classList.remove('off','cracked','warm'); }},
       power() ],
     boot:'message',
-    outro:[ G('메시지 보여요! 언니가… 잘 지낸대요.','happy'), G('사장님 손은 진짜 마법 같아요.','happy') ] },
+    outro:[ G('보인다! 언니가… 잘 지낸대.','happy'), G('…뭘 봐. 우는 거 아니거든!','shy') ] },
 
   { name:'충전 불량', view:'back', parts:['part-cable'], par:40, pay:25000,
     setup(){ q('port').querySelector('.lint').classList.remove('gone'); q('grill').querySelector('.dust').classList.remove('gone'); },
-    intro:[ SYS('딸랑— 오늘은 조금 뾰로통한 표정이다.'),
-      G('충전기를 꽂아도 반응이 없어요.','sad'),
-      G('주머니에 넣고 다녀서 그런가…?','worried'),
+    intro:[ SYS('딸랑— 오늘은 볼이 잔뜩 부풀어 있다.'),
+      G('충전기를 꽂아도 반응이 없어. 흥.','angry'),
+      G('주머니에 막 넣고 다녀서 그런 거… 아니겠지?','worried'),
       ME('포트에 먼지가 꽉 찼네요. 청소부터 해 볼게요.') ],
     steps:()=>[
       {t:'tweezers', ids:['port'], act:'tap', n:3, label:'핀셋으로 충전 포트 속 먼지 뭉치 빼내기 (3번)',
@@ -380,30 +410,30 @@ const DAYS = [
         rub:(el,r)=>{ el.querySelector('.dust').style.opacity = 1-r; }},
       {t:'part-cable', ids:['port'], act:'tap', n:1, label:'충전기를 골라 포트에 꽂아 확인하기', each:el=>el.classList.add('plugged')} ],
     boot:'charge',
-    outro:[ G('충전된다! 번개 표시 떴어요!','happy'), G('이제 밤새 언니랑 통화할 수 있겠다.','happy') ] },
+    outro:[ G('번개 표시 떴다!','happy'), G('이제 밤새 언니랑 통화할 수 있겠다. …너한테도 가끔 전화해 줄 수도 있고.','smug') ] },
 
   { name:'물에 빠진 폰', view:'back', parts:[], par:75, pay:60000,
     setup(){ ['rust1','rust2','rust3'].forEach(r=>rem(r,'gone')); add('board','wet'); },
-    intro:[ SYS('딸랑— 비에 흠뻑 젖은 하나가 뛰어 들어왔다.'),
-      G('사장님! 큰일 났어요!','worried'),
-      G('우산 없이 뛰다가 폰이 웅덩이에 빠졌어요…','sad'),
-      G('안 켜져요. 제발 살려 주세요!','worried'),
-      ME('일단 배터리부터 분리하고, 속을 말려 봅시다.') ],
+    intro:[ SYS('딸랑— 비에 흠뻑 젖은 에밀리가 뛰어 들어왔다.'),
+      G('크, 큰일 났어…!','worried'),
+      G('우산 없이 뛰다가 폰이 웅덩이에 빠졌어. 안 켜져…','sad'),
+      G('언니 사진이랑 메시지, 다 거기 있단 말이야. 제발…','sad'),
+      ME('배터리부터 분리하고 속을 말려 봅시다. 할 수 있어요.') ],
     steps:()=>[ ...openBack(),
       {t:'brush', ids:['rust1','rust2','rust3'], act:'rub', amt:200, label:'브러시로 부식된 곳 3군데 문질러 닦기',
         rub:(el,r)=>{ el.style.opacity = 1-r; }, each:el=>el.classList.add('gone')},
       {t:'heat', ids:['board'], act:'hold', ms:2000, label:'열풍기로 기판을 길게 말리기', done:()=>rem('board','wet')},
       ...closeBack(), power() ],
     boot:'alive',
-    outro:[ G('살았다…! 진짜 살았어요!','happy'), G('사진도, 메시지도 그대로예요. 흑…','sad'), G('사장님, 감사합니다!','happy') ] },
+    outro:[ G('살았다…! 사진도 메시지도 그대로야…','sad'), G('…고마워. 진짜로.','shy'), G('이, 이번 한 번만 솔직하게 말해 준 거야!','angry') ] },
 
   { name:'깨진 카메라', view:'back', parts:['part-camera','part-lens'], par:80, pay:70000,
     setup(){ add('lens','cracked'); add('cam','broken'); },
-    intro:[ SYS('딸랑— 오늘은 웃는 얼굴이다.'),
-      G('오늘은 고장 난 게 아니라… 아니, 사실 고장 났어요.','normal'),
-      G('카메라가 깨졌는데, 다음 주에 언니가 잠깐 한국에 와요!','surprised'),
-      G('언니랑 같이 사진 찍고 싶어서요.','happy'),
-      ME('그럼 제일 좋은 사진이 나오게 고쳐 드려야겠네요.') ],
+    intro:[ SYS('딸랑— 오늘은 어쩐지 들뜬 얼굴이다.'),
+      G('오늘은 고장 난 게 아니라… 아니, 사실 고장 났어.','normal'),
+      G('다음 주에 언니가 잠깐 한국에 와!','surprised'),
+      G('같이 사진 찍고 싶은데, 카메라가 깨져 버렸어.','sad'),
+      ME('그럼 제일 예쁜 사진이 나오게 고쳐 줘야겠네요.') ],
     steps:()=>[ ...openBack(),
       {t:'tweezers', ids:['cam'], act:'hold', ms:1000, label:'핀셋으로 깨진 카메라 모듈 빼내기', done:()=>add('cam','gone')},
       {t:'part-camera', ids:['slot-cam'], act:'tap', n:1, label:'새 카메라 모듈을 빈 자리에 끼우기', each:()=>{ rem('cam','gone'); rem('cam','broken'); }},
@@ -411,10 +441,10 @@ const DAYS = [
       {t:'part-lens', ids:['lens'], act:'tap', n:1, label:'새 렌즈로 뒷판의 깨진 렌즈 교체하기', each:el=>el.classList.remove('cracked')},
       power() ],
     boot:'photo',
-    outro:[ G('찰칵! …와, 엄청 선명해요!','happy'),
-      G('첫 사진은 사장님이랑 찍었으니까, 다음은 언니 차례예요.','happy'),
-      G('이 폰엔 추억이 계속 쌓이고 있어요. 다 사장님 덕분이에요.','normal'),
-      SYS('— 그 뒤로도 하나는 가끔 수리점에 들러, 언니와 찍은 사진을 보여 주었다.') ] },
+    outro:[ G('찰칵! …엄청 선명해!','happy'),
+      G('첫 사진은… 너랑 찍은 거야. 딱히 의미는 없거든!','shy'),
+      G('그래도 이 폰에 추억이 계속 쌓이는 건, 네 덕분이야.','normal'),
+      SYS('— 그 뒤로도 에밀리는 가끔 수리점에 들러, 언니와 찍은 사진을 자랑하고 갔다.') ] },
 ];
 
 /* ---------- 저장 ---------- */
@@ -438,7 +468,7 @@ function nextLine(){
   if(!l){ $('#talk').hidden=true; const cb=talkDone; talkDone=null; cb&&cb(); return; }
   const who=$('#talkWho');
   who.className='who'+(l.who==='me'?' me':l.who==='sys'?' sys':'');
-  who.textContent = l.who==='g'?'하나':l.who==='me'?'나 (사장님)':'';
+  who.textContent = l.who==='g'?'에밀리':l.who==='me'?'나 (사장님)':'';
   who.style.display = l.who==='sys'?'none':'';
   $('#girlB').style.visibility = l.who==='sys'?'hidden':'visible';
   if(l.f) face(l.f);
@@ -475,7 +505,7 @@ function startDay(){
 function beginRepair(){
   const D=DAYS[save.day];
   R = { D, steps:D.steps(), i:-1, mistakes:0, t0:performance.now(), hints:0 };
-  say('잘 부탁드려요…!','worried');
+  say('…잘 부탁해. 망가뜨리면 가만 안 둬.','normal');
   clearInterval(timerId);
   timerId=setInterval(()=>{ const s=Math.floor((performance.now()-R.t0)/1000); $('#timeLbl').textContent='⏱ '+Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); },250);
   nextStep();
@@ -494,18 +524,18 @@ function nextStep(){
 function armHint(){ clearTimeout(hintId); hintId=setTimeout(showHint, 9000); }
 function showHint(){ if(!R||!R.st) return; R.st.left.forEach(id=>q(id).classList.add('hint')); }
 $('#hintBtn').onclick = () => { if(!R) return; R.hints++; showHint();
-  say('반짝이는 곳을 ' + TOOLNAME[R.st.t] + '(으)로… 맞죠?','normal'); };
+  say('반짝이는 데를 ' + TOOLNAME[R.st.t] + '(으)로 하면 되잖아. 바보.','smug'); };
 
 function targetAt(el){
   while(el && el!==bench){ if(el.dataset && el.dataset.p && R.st.left.has(el.dataset.p)) return el; el=el.parentElement; }
   return null;
 }
-const MISS = ['앗, 그 도구 맞아요…?','으앗, 조심조심…!','그거 아닌 것 같은데요…','헉, 괜찮은 거죠?'];
-const CHEER = ['오오…','우와, 손 빠르다!','신기해요!','두근두근…','조금만 더!'];
+const MISS = ['야! 그 도구 맞아?','조, 조심해! 내 폰이라고!','그거 아닌 것 같은데…','흥, 서툴긴.'];
+const CHEER = ['…제법인데?','오, 손 빠르네.','딱히 감탄한 건 아니야.','두근두근…','조금만 더!'];
 function mistake(el,x,y){
   R.mistakes++; sfx.bad(); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
   pop(x,y,'✕ 도구가 달라요','#ffb3b3');
-  say(MISS[Math.floor(Math.random()*MISS.length)],'worried');
+  say(MISS[Math.floor(Math.random()*MISS.length)], Math.random()<.5?'angry':'worried');
 }
 function pop(x,y,txt,color){ const d=document.createElement('div'); d.className='float'; d.textContent=txt; d.style.left=x+'px'; d.style.top=y+'px'; if(color) d.style.color=color; document.body.appendChild(d); setTimeout(()=>d.remove(),800); }
 
@@ -517,7 +547,7 @@ function doneTarget(el,x,y){
   sfx.tap(); if(x!=null) pop(x,y,'✓','#b7ffcf');
   if(!st.left.size){
     st.done && st.done(); sfx.ok();
-    if(Math.random()<.45) say(CHEER[Math.floor(Math.random()*CHEER.length)],'surprised');
+    if(Math.random()<.45) say(CHEER[Math.floor(Math.random()*CHEER.length)], Math.random()<.5?'surprised':'shy');
     const busy = R; setTimeout(()=>{ if(R===busy) nextStep(); }, 380);
   } else armHint();
 }
@@ -580,7 +610,7 @@ function bootScreen(kind){
   const clock = `<div style="font-size:12px;opacity:.8">${now.getMonth()+1}월 ${now.getDate()}일</div><div class="clock">${hh}:${mm}</div>`;
   const C = {
     battery: clock + '<div style="font-size:14px">🔋 100%</div>',
-    message: clock + '<div class="msg"><b>💌 언니</b><br>하나야, 잘 지내? 여긴 눈이 와. 보고 싶다!</div>',
+    message: clock + '<div class="msg"><b>💌 언니</b><br>에밀리, 잘 지내? 여긴 눈이 와. 보고 싶다 🐰</div>',
     charge: '<div style="font-size:64px">⚡</div><div style="font-size:18px;font-weight:700">충전 중 · 12%</div>',
     alive: clock + '<div style="font-size:14px">다시 만나서 반가워요 :)</div>',
     photo: '<div style="width:86%;aspect-ratio:3/4;border:6px solid #fff;border-bottom-width:24px;border-radius:4px;background:linear-gradient(#ffd6a5,#ffadc6);display:grid;place-items:center;font-size:40px">✌️😊</div><div style="font-size:13px;margin-top:6px">첫 번째 사진</div>'
@@ -608,7 +638,7 @@ function finish(){
 }
 function showResult({sec,stars,pay,tip}){
   const D=R.D, m=Math.floor(sec/60), s=Math.floor(sec%60);
-  const react = stars===3 ? '벌써 끝났어요?! 완전 프로다!' : stars===2 ? '고쳐 주셔서 고마워요!' : '음… 조금 오래 걸렸지만, 그래도 고마워요.';
+  const react = stars===3 ? '벌써 끝났어?! …흥, 인정해 줄게.' : stars===2 ? '뭐, 나쁘지 않네. 고마워.' : '느려! …그래도 고쳐 줬으니까 봐줄게.';
   $('#resultCard').innerHTML = `
     <h2>DAY ${save.day+1} 수리 완료</h2><p style="margin:0;color:#6b5a4e;font-weight:600">${D.name}</p>
     <div class="stars">${[1,2,3].map(i=>`<span class="${i<=stars?'':'off'}">★</span>`).join('')}</div>
@@ -631,7 +661,7 @@ function ending(){
   $('#resultCard').innerHTML = `
     <h2>THE END</h2>
     <svg viewBox="0 0 120 130" style="width:140px">${GIRL}</svg>
-    <p style="margin:6px 0 0">하나의 폰은 오늘도 잘 켜집니다.</p>
+    <p style="margin:6px 0 0">에밀리의 폰은 오늘도 잘 켜집니다.</p>
     <div class="rows"><span>모은 돈</span><b>${won(save.money)}</b><span>별</span><b>★ ${total} / ${DAYS.length*3}</b></div>
     <button class="btn" id="againBtn">처음부터 다시</button>
     <a class="btn line" href="../../" style="text-decoration:none;box-sizing:border-box">eleven.me.kr로</a>`;
