@@ -177,9 +177,17 @@
     {
       if (e.key !== "Enter") return;
 
-      const text = cmd.value.trim().toLowerCase();
-      updateGhost();
+      let text = cmd.value.trim().toLowerCase();
+
+      // 명령어를 끝까지 안 쳐도, 추천(회색 글씨)이 있으면 그걸로 채워서 실행 (모바일용: ab + 엔터 → about)
+      if (!commands.hasOwnProperty(text) && text != "clear")
+      {
+        const suggestion = findSuggestion(text);
+        if (suggestion != "") text = suggestion;
+      }
+
       cmd.value = "";
+      updateGhost(); // 입력칸을 비운 뒤에 회색 추천 글씨도 지우기
       print('<span class="prompt">eleven:~$</span> ' + escapeHtml(text));
 
       if (text == "")
