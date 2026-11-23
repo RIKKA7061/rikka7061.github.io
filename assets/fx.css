@@ -1,0 +1,99 @@
+/* Eleven 공용 효과: 홈페이지(index.html)의 도트 게임 느낌을 포트폴리오·게임 정보 페이지에도 똑같이.
+   홈페이지의 "도트 게임 느낌 + 움직임 효과" CSS를 옮긴 것이라, 홈페이지 효과를 바꾸면 여기도 같이 맞춘다.
+   움직임은 fx.js가 담당하고, 인쇄할 때와 '움직임 줄이기' 설정에서는 모두 꺼진다. */
+
+/* 도트 글꼴: 갈무리11 (Galmuri, SIL OFL 1.1, assets/fonts/Galmuri-OFL.md) */
+@font-face { font-family: Galmuri11; font-weight: 400; font-display: swap; src: url('fonts/Galmuri11.woff2') format('woff2'); }
+@font-face { font-family: Galmuri11; font-weight: 700; font-display: swap; src: url('fonts/Galmuri11-Bold.woff2') format('woff2'); }
+
+@media screen {
+  /* 별 배경(#stars)과 클릭 파티클(#fx) 캔버스: fx.js가 만든다 */
+  #stars, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  #stars { z-index: -1; }
+  #fx { z-index: 100; }
+
+  /* 오래된 모니터 같은 가로줄 */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
+    mix-blend-mode: multiply; opacity: .5;
+  }
+
+  /* 상단 메뉴: 우산 로고가 살랑, 올리면 한 바퀴 / 메뉴 글자 빛 + 계단식 밑줄 */
+  .brand img { animation: fx-sway 3s ease-in-out infinite; transform-origin: 50% 85%; }
+  .brand:hover img { animation: fx-spin .6s steps(8) 1; }
+  .brand:hover { text-shadow: 0 0 10px #b08af5; }
+  .nav a { position: relative; }
+  .nav a:hover { text-shadow: 0 0 8px #b08af5, 0 0 18px rgba(176,138,245,.6); }
+  .nav a::before {
+    content: ""; position: absolute; left: 50%; bottom: 4px; width: 0; height: 2px;
+    background: #b08af5; box-shadow: 0 0 8px #b08af5;
+    transition: width .3s steps(6), left .3s steps(6);
+  }
+  .nav a:hover::before { width: calc(100% - 16px); left: 8px; }
+  .nav a[aria-current="page"]::after { box-shadow: 0 0 8px #b08af5; }
+
+  /* 버튼: 올리면 빛이 쓱 지나가고 네온처럼 번짐 */
+  .btn { position: relative; overflow: hidden; isolation: isolate; }
+  .btn::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; z-index: -1;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+    transform: skewX(-20deg);
+  }
+  .btn:hover::before { animation: fx-shine .7s ease; }
+  .btn:hover { box-shadow: 0 4px 0 var(--ink, #ece8f5), 0 0 18px rgba(236,232,245,.45); }
+  .btn.primary:hover, .btn-primary:hover { box-shadow: 0 4px 0 #4b2a8a, 0 0 14px #7c4dcc, 0 0 34px rgba(124,77,204,.8); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink, #ece8f5); transition-duration: .05s; }
+
+  /* 작은 제목 앞에 깜빡이는 ▶ */
+  .eyebrow::before, .fx-blink::before { content: "▶ "; animation: fx-blink 1s steps(1) infinite; }
+
+  /* 제목 글자가 한 글자씩 떨어지고, 끝에 픽셀 커서 (fx.js가 data-fx-drop 제목을 나눈다) */
+  .fx-letters .w { white-space: nowrap; }
+  .fx-letters .ch { display: inline-block; animation: fx-drop .5s steps(5) both; animation-delay: calc(var(--i) * 90ms + .15s); }
+  .fx-cursor {
+    display: inline-block; width: .45em; height: .12em; margin-left: .08em; vertical-align: baseline;
+    background: #b08af5; box-shadow: 0 0 12px #b08af5; animation: fx-blink 1s steps(1) infinite;
+  }
+
+  /* 화면에 들어올 때 도트처럼 툭툭 나타남 (fx.js가 data-fx-reveal 에 붙인다) */
+  html.fx-on [data-fx-reveal]:not(.fx-in) { opacity: 0; }
+  [data-fx-reveal].fx-in { animation: fx-pixin .45s steps(6) both; }
+
+  /* 카드: 마우스를 따라 기울고 빛이 따라다님 (fx.js가 data-fx-tilt 에 .fx-light 를 넣는다) */
+  [data-fx-tilt] { position: relative; transform-style: preserve-3d; will-change: transform; transition: transform .15s, box-shadow .2s, border-color .15s; }
+  [data-fx-tilt]:hover {
+    border-color: #b08af5;
+    box-shadow: 0 0 0 1px #b08af5, 0 0 24px rgba(124,77,204,.55);
+    transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  }
+  .fx-light {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+    opacity: 0; transition: opacity .2s;
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(176,138,245,.28), transparent 60%);
+  }
+  [data-fx-tilt]:hover .fx-light { opacity: 1; }
+
+  /* 반짝이는 강조 글자 */
+  .fx-neon { animation: fx-neon 2.4s ease-in-out infinite; }
+}
+
+@keyframes fx-sway { 50% { transform: rotate(-8deg); } }
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+@keyframes fx-shine { to { left: 130%; } }
+@keyframes fx-blink { 50% { opacity: 0; } }
+@keyframes fx-drop { 0% { opacity: 0; transform: translateY(-60px); } 70% { opacity: 1; transform: translateY(6px); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-pixin { from { opacity: 0; transform: translateY(14px); filter: blur(3px); } }
+@keyframes fx-neon { 50% { text-shadow: 0 0 10px #b08af5, 0 0 22px #b08af5; color: #fff; } }
+
+/* 인쇄: 효과 없이 */
+@media print {
+  #stars, #fx, .fx-cursor, .fx-light { display: none !important; }
+}
+
+/* 움직임 줄이기 설정: 모든 움직임 끄기 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .fx-cursor { display: none; }
+  [data-fx-tilt]:hover { transform: none; }
+}

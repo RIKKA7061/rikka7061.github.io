@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir _site
           rsync -a --exclude '.git' --exclude '.github' --exclude '_drafts' --exclude 'tools' \
-            --exclude 'README.md' --exclude '_site' ./ _site/
+            --exclude 'README.md' --exclude 'THEME.md' --exclude 'docs' --exclude '_site' ./ _site/
 
       - name: 플레이스토어 이미지 가져오기
         run: |

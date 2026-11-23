@@ -1,5 +1,6 @@
 /* 게임 정보 페이지(games/*) 공통 디자인 — Eleven 홈페이지 테마
-   어두운 보라 한 가지 테마, 강조색은 보라 하나. 값은 THEME 가이드의 디자인 토큰 그대로. */
+   어두운 보라 한 가지 테마, 강조색은 보라 하나. 값은 THEME 가이드의 디자인 토큰 그대로.
+   도트 글꼴(갈무리11)과 움직임 효과(별 배경·네온·파티클)는 홈페이지와 같은 assets/fx.css, fx.js 에서. */
 :root {
   --bg: #0e0b14;
   --soft: #1a1426;
@@ -19,12 +20,14 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
-  line-height: 1.6;
+  font-family: Galmuri11, Galmuri9, Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
 }
 h1, h2, h3, p, ul, dl { margin: 0; }
+/* 도트 글꼴은 글자 사이를 좁히면 깨져 보여서 0 으로 */
+h1, h2, h3, .brand, .nav a, .btn, .eyebrow, .tags li, .cover-genre, .info-table dt { letter-spacing: 0 !important; }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 [hidden] { display: none !important; }
@@ -83,8 +86,8 @@ img { max-width: 100%; display: block; }
 .btn-line { background: transparent; }
 
 /* ---------- 게임 페이지 ---------- */
-.page { animation: fade .35s ease; padding-bottom: 72px; }
-@keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+.page { animation: pixin .45s steps(6) both; padding-bottom: 72px; }
+@keyframes pixin { from { opacity: 0; transform: translateY(14px); filter: blur(3px); } }
 .crumb { font-size: .9rem; color: var(--muted); padding-top: 32px; }
 .crumb a { color: var(--muted); text-decoration-color: var(--line); text-underline-offset: 3px; }
 .crumb a:hover { color: var(--purple); }
