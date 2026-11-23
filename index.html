@@ -128,6 +128,7 @@
     }
     .contact-card:hover { border-color: var(--purple); transform: translateY(-2px); }
     .contact-card .ico { font-size: 1.8rem; }
+    .lead-sm { color: var(--muted); margin: 10px 0 0; }
     .contact-card h2 { font-size: 1.05rem; margin: 8px 0 2px; }
     .contact-card p { margin: 0; color: var(--muted); word-break: break-all; }
     .contact-card.main { background: var(--btn); color: #fff; border-color: var(--btn); }
@@ -147,7 +148,7 @@
     <nav class="nav" aria-label="메뉴">
       <a href="#about" data-go="about">about</a>
       <a href="portfolio/">portfolio</a>
-      <a href="BibleNote/">BibleNote</a>
+      <a href="#labs" data-go="labs">labs</a>
       <a href="#character" data-go="character">character</a>
       <a href="#music" data-go="music">music</a>
       <a href="#contact" data-go="contact">contact</a>
@@ -216,6 +217,28 @@
     </div>
   </section>
 
+  <!-- Labs: 따로 만든 사이트 모음 (새 탭으로 열려서 홈페이지는 그대로 남음) -->
+  <section class="page" id="p-labs" aria-labelledby="labs-title">
+    <div class="wrap">
+      <div class="page-head">
+        <p class="eyebrow">Labs</p>
+        <h1 id="labs-title">실험실</h1>
+        <p class="lead-sm">따로 만든 사이트와 도구 모음이에요. 새 탭으로 열려요.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="BibleNote/" target="_blank" rel="noopener">
+          <div class="ico">📖</div><h2>BibleNote ↗</h2><p>성경 노트</p>
+        </a>
+        <a class="contact-card" href="livealone/" target="_blank" rel="noopener">
+          <div class="ico">🏠</div><h2>자취생활 마스터 ↗</h2><p>집안일·물 마시기·자취 일기를 게임처럼 관리하는 웹앱</p>
+        </a>
+        <a class="contact-card" href="terminal/" target="_blank" rel="noopener">
+          <div class="ico">⌨️</div><h2>터미널 모드 ↗</h2><p>명령어로 둘러보는 Eleven</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="page" id="p-contact" aria-labelledby="contact-title">
     <div class="wrap">
@@ -244,13 +267,13 @@
 <footer class="footer">
   <div class="wrap">
     <span>© <span id="year">2026</span> Eleven</span>
-    <span><a href="terminal/">터미널 모드</a> · <a href="portfolio/">포트폴리오</a> · <a href="BibleNote/">BibleNote</a></span>
+    <span><a href="#labs">Labs</a> · <a href="portfolio/">포트폴리오</a></span>
   </div>
 </footer>
 
 <script>
   // ---------- 메뉴 누르면 해당 화면만 보여 주기 (주소 #about 처럼 바뀜) ----------
-  const pages = ['lobby', 'about', 'character', 'music', 'contact'];
+  const pages = ['lobby', 'about', 'labs', 'character', 'music', 'contact'];
   function show(name) {
     if (!pages.includes(name)) name = 'lobby';
     document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.id === 'p-' + name));
