@@ -12,8 +12,12 @@
   <meta property="og:url" content="https://eleven.me.kr/">
   <link rel="canonical" href="https://eleven.me.kr/">
   <link rel="icon" href="assets/home/logo.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Galmuri11-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
   <style>
+    /* 도트 글꼴: 갈무리11 (Galmuri, SIL OFL 1.1, assets/fonts/Galmuri-OFL.md) */
+    @font-face { font-family: Galmuri11; font-weight: 400; font-display: swap; src: url('assets/fonts/Galmuri11.woff2') format('woff2'); }
+    @font-face { font-family: Galmuri11; font-weight: 700; font-display: swap; src: url('assets/fonts/Galmuri11-Bold.woff2') format('woff2'); }
     :root {
       --bg: #0e0b14;
       --ink: #ece8f5;
@@ -31,8 +35,8 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0; background: var(--bg); color: var(--ink);
-      font-family: Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      font-family: Galmuri11, Galmuri9, Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
     img { max-width: 100%; display: block; }
@@ -67,10 +71,10 @@
     .page-head h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 6px 0 0; letter-spacing: -.02em; line-height: 1.15; }
 
     /* ---------- 로비 ---------- */
-    .lobby { position: relative; overflow: hidden; background: radial-gradient(ellipse at 75% 40%, rgba(124,77,204,.28), transparent 60%), linear-gradient(160deg, #1b1230 0%, #140e20 55%, #0e0b14 100%); }
+    .lobby { position: relative; overflow: hidden; background: radial-gradient(ellipse at 75% 40%, rgba(124,77,204,.28), transparent 60%), linear-gradient(160deg, rgba(27,18,48,.85) 0%, rgba(20,14,32,.6) 55%, transparent 100%); }
     .lobby .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; min-height: calc(100vh - 69px); min-height: calc(100svh - 69px); padding-top: 40px; padding-bottom: 40px; }
     .lobby h1 { font-size: clamp(3rem, 11vw, 6.5rem); line-height: 1; margin: 10px 0 0; letter-spacing: -.035em; }
-    .lobby h1 span { color: var(--purple); }
+    .lobby h1 .dot { color: var(--purple); }
     .lobby .lead { font-size: clamp(1.05rem, 2.4vw, 1.25rem); color: var(--muted); margin: 18px 0 0; max-width: 30em; }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .btn {
@@ -139,9 +143,123 @@
     .footer { border-top: 1px solid var(--line); padding: 22px 0 28px; color: var(--muted); font-size: .88rem; }
     .footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .footer a { color: var(--muted); }
+
+    /* =========================================================
+       도트 게임 느낌 + 움직임 효과
+       ========================================================= */
+    h1, h2, .brand, .nav a, .btn, .eyebrow, .tag { letter-spacing: 0 !important; }
+    h1, .brand { font-weight: 700; }
+    .lobby h1 { line-height: 1.05; }
+    .lobby { overflow: clip; }
+    .about-body .mission { line-height: 1.95; font-weight: 400; }
+
+    /* 배경: 반짝이는 픽셀 별(캔버스) + 옛날 모니터 줄무늬 */
+    #stars, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    #stars { z-index: -1; }
+    #fx { z-index: 100; }
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
+      mix-blend-mode: multiply; opacity: .5;
+    }
+
+    /* 로고: 살랑살랑, 마우스 올리면 빙글 */
+    .brand img { animation: sway 3s ease-in-out infinite; transform-origin: 50% 85%; }
+    .brand:hover img { animation: spin .6s steps(8) 1; }
+    .brand:hover { text-shadow: 0 0 10px var(--purple); }
+    @keyframes sway { 50% { transform: rotate(-8deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 메뉴: 빛나는 글자 + 계단식으로 자라는 밑줄 */
+    .nav a { position: relative; }
+    .nav a:hover { text-shadow: 0 0 8px var(--purple), 0 0 18px rgba(176,138,245,.6); }
+    .nav a::before {
+      content: ""; position: absolute; left: 50%; bottom: 4px; width: 0; height: 2px; background: var(--purple);
+      box-shadow: 0 0 8px var(--purple); transition: width .3s steps(6), left .3s steps(6);
+    }
+    .nav a:hover::before { width: calc(100% - 16px); left: 8px; }
+    .nav a[aria-current="page"]::after { box-shadow: 0 0 8px var(--purple); }
+
+    /* 버튼: 네온 불빛 + 지나가는 반짝임 + 눌리는 느낌 */
+    .btn { position: relative; overflow: hidden; isolation: isolate; }
+    .btn::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; z-index: -1;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg);
+    }
+    .btn:hover::before { animation: shine .7s ease; }
+    .btn:hover { box-shadow: 0 4px 0 var(--ink), 0 0 18px rgba(236,232,245,.45); }
+    .btn.primary:hover { box-shadow: 0 4px 0 var(--purple-deep), 0 0 14px #7c4dcc, 0 0 34px rgba(124,77,204,.8); }
+    .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); transition-duration: .05s; }
+    @keyframes shine { to { left: 130%; } }
+
+    /* 작은 제목 앞 깜빡이는 ▶ */
+    .eyebrow::before { content: "▶ "; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* 화면 전환: 픽셀처럼 뚝뚝 끊기며 나타남 */
+    .page.on { animation: pixin .45s steps(6) both; }
+    @keyframes pixin { from { opacity: 0; transform: translateY(14px); filter: blur(3px); } }
+
+    /* 로비: 글자가 하나씩 떨어짐 + 커서 + 타자 효과 + 둥둥 뜨는 우산 */
+    .lobby h1 .ch { display: inline-block; opacity: 0; }
+    .page.play .lobby-title .ch, .lobby.play h1 .ch { animation: drop .5s steps(5) both; animation-delay: calc(var(--i) * 90ms + .15s); }
+    @keyframes drop { 0% { opacity: 0; transform: translateY(-60px); } 70% { opacity: 1; transform: translateY(6px); } 100% { opacity: 1; transform: none; } }
+    .lobby h1 .cursor { display: inline-block; width: .45em; height: .12em; background: var(--purple); margin-left: .08em; box-shadow: 0 0 12px var(--purple); animation: blink 1s steps(1) infinite; vertical-align: baseline; }
+    .lobby .lead .caret { display: inline-block; width: .55em; height: 1.1em; background: var(--muted); vertical-align: text-bottom; margin-left: 2px; animation: blink .7s steps(1) infinite; }
+    .lobby-art .orb { animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite; }
+    .lobby-art .orb::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 2px dashed rgba(176,138,245,.35); animation: spin 24s linear infinite; }
+    @keyframes float { 50% { transform: translateY(-14px); } }
+    @keyframes glow { 50% { box-shadow: 0 0 120px rgba(124,77,204,.6), inset 0 0 0 10px rgba(255,255,255,.08); } }
+    .lobby-art .tag { animation: blink 1.6s steps(1) infinite; }
+    .lobby-art .tag:hover { animation: none; }
+    .next b { animation: neon 2.4s ease-in-out infinite; }
+    @keyframes neon { 50% { text-shadow: 0 0 10px var(--purple), 0 0 22px var(--purple); color: #fff; } }
+    .lobby .actions, .lobby .next, .lobby .eyebrow { opacity: 0; }
+    .lobby.play .eyebrow { animation: rise .5s ease both .05s; }
+    .lobby.play .actions { animation: rise .6s ease both 1.9s; }
+    .lobby.play .next { animation: rise .6s ease both 2.2s; }
+
+    /* About: 단어가 천천히 하나씩 올라옴 */
+    .mission .w { display: inline-block; opacity: 0; transform: translateY(.9em); filter: blur(4px); }
+    .page.play .mission .w { animation: wordup .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 70ms + .3s); }
+    .page.play .mission strong .w { animation-name: wordup, neon; animation-duration: .7s, 2.4s; animation-iteration-count: 1, infinite; animation-delay: calc(var(--i) * 70ms + .3s), calc(var(--i) * 70ms + 1s); }
+    @keyframes wordup { to { opacity: 1; transform: none; filter: none; } }
+    .page.play .facts > div { animation: slidein .5s steps(5) both; animation-delay: calc(var(--n) * 160ms + 2.2s); }
+    @keyframes slidein { from { opacity: 0; transform: translateX(30px); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .page-head h1, .page-head .lead-sm { animation: none; }
+    .page.play .page-head h1 { animation: rise .5s ease both .1s; }
+
+    /* 카드: 차례로 등장 + 마우스 따라 기울고 빛 */
+    .page.play .contact-card { animation: rise .55s ease backwards; animation-delay: calc(var(--n) * 120ms + .2s); }
+    .contact-card { position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; }
+    .contact-card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s;
+      background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(176,138,245,.28), transparent 60%);
+    }
+    .contact-card:hover::after { opacity: 1; }
+    .contact-card:hover { border-color: var(--purple); box-shadow: 0 0 0 1px var(--purple), 0 0 24px rgba(124,77,204,.55); transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px); }
+    .contact-card:hover .ico { animation: hop .5s steps(4) infinite alternate; }
+    @keyframes hop { to { transform: translateY(-6px); } }
+    .contact-card.main:hover { box-shadow: 0 0 18px #7c4dcc, 0 0 44px rgba(124,77,204,.7); }
+    .facts { transition: box-shadow .2s; }
+    .facts:hover { box-shadow: 0 0 0 1px var(--purple), 0 0 22px rgba(124,77,204,.45); }
+
+    /* 공사중: 줄무늬가 움직이고 이모지가 통통 */
+    .construction .sign { background-size: 45px 45px; animation: stripes 1s linear infinite; box-shadow: 0 0 30px rgba(255,211,77,.3); }
+    .construction .sign span { animation: hop .45s steps(3) infinite alternate; }
+    @keyframes stripes { to { background-position: 45px 0; } }
+
+    /* 움직임 줄이기 설정을 켠 사람에게는 효과 끄기 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .lobby h1 .ch, .mission .w, .lobby .actions, .lobby .next, .lobby .eyebrow { opacity: 1 !important; transform: none !important; filter: none !important; }
+    }
   </style>
 </head>
 <body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
 <header class="header">
   <div class="wrap">
     <a class="brand" href="#lobby" data-go="lobby"><img src="assets/home/logo-light.svg" alt="">Eleven</a>
@@ -163,7 +281,7 @@
     <div class="wrap">
       <div>
         <p class="eyebrow">Game Developer</p>
-        <h1>Eleven<span>.</span></h1>
+        <h1 aria-label="Eleven.">Eleven<span class="dot">.</span><i class="cursor" aria-hidden="true"></i></h1>
         <p class="lead">다채로운 게임 콘텐츠로 삶의 재미를,<br>아름다운 세계 속에서 행복을.</p>
         <div class="actions">
           <a class="btn primary" href="portfolio/">포트폴리오 보기 →</a>
@@ -294,6 +412,151 @@
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // =========================================================
+  //  효과 스크립트
+  // =========================================================
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 글자를 한 글자씩 <span>으로 감싸기 (로비 제목)
+  (function splitTitle() {
+    const h = document.querySelector('.lobby h1');
+    let i = 0;
+    [...h.childNodes].forEach(node => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        [...node.textContent].forEach(c => { const sp = document.createElement('span'); sp.className = 'ch'; sp.style.setProperty('--i', i++); sp.textContent = c; sp.setAttribute('aria-hidden', 'true'); frag.appendChild(sp); });
+        node.replaceWith(frag);
+      } else if (node.tagName === 'SPAN') {
+        node.classList.add('ch'); node.style.setProperty('--i', i++); node.setAttribute('aria-hidden', 'true');
+      }
+    });
+  })();
+
+  // 단어마다 <span>으로 감싸기 (About 문장)
+  (function splitWords() {
+    const el = document.querySelector('.mission');
+    let i = 0;
+    const walk = parent => [...parent.childNodes].forEach(node => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement('span'); w.className = 'w'; w.style.setProperty('--i', i++); w.textContent = part; frag.appendChild(w);
+        });
+        node.replaceWith(frag);
+      } else walk(node);
+    });
+    walk(el);
+  })();
+  document.querySelectorAll('.facts > div').forEach((d, n) => d.style.setProperty('--n', n));
+  document.querySelectorAll('.contact-grid').forEach(g => [...g.children].forEach((c, n) => c.style.setProperty('--n', n)));
+
+  // 로비 문구 타자 효과
+  const lead = document.querySelector('.lobby .lead');
+  const leadLines = ['다채로운 게임 콘텐츠로 삶의 재미를,', '아름다운 세계 속에서 행복을.'];
+  let typingTimer = null;
+  function typeLead() {
+    clearTimeout(typingTimer);
+    if (calm) { lead.innerHTML = leadLines.join('<br>'); return; }
+    let line = 0, pos = 0;
+    const step = () => {
+      const done = leadLines.slice(0, line).map(t => t + '<br>').join('');
+      lead.innerHTML = done + leadLines[line].slice(0, pos) + '<span class="caret"></span>';
+      if (++pos > leadLines[line].length) { line++; pos = 0; }
+      if (line < leadLines.length) typingTimer = setTimeout(step, line === 0 && pos === 1 ? 700 : 45);
+    };
+    step();
+  }
+
+  // 화면이 바뀔 때마다 등장 효과를 처음부터 다시
+  function play(name) {
+    const page = document.getElementById('p-' + name);
+    if (!page) return;
+    page.classList.remove('play'); void page.offsetWidth; page.classList.add('play');
+    if (name === 'lobby') typeLead();
+  }
+  window.addEventListener('hashchange', () => play(pages.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'lobby'));
+  play(pages.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'lobby');
+
+  // 카드: 마우스 따라 기울기 + 빛
+  if (matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.contact-card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', x * 100 + '%'); card.style.setProperty('--my', y * 100 + '%');
+        card.style.setProperty('--ry', (x - .5) * 12 + 'deg'); card.style.setProperty('--rx', (.5 - y) * 10 + 'deg');
+      });
+      card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  // 배경: 반짝이는 픽셀 별 (마우스를 따라 살짝 움직임)
+  (function stars() {
+    const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+    let W, H, list = [], mx = 0, my = 0;
+    const colors = ['#ffffff', '#d9c8ff', '#b08af5', '#f2a7c8'];
+    function resize() {
+      const d = Math.min(devicePixelRatio || 1, 2);
+      W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+      list = Array.from({ length: Math.round(W * H / 5500) }, () => ({
+        x: Math.random() * W, y: Math.random() * H, s: Math.random() < .15 ? 3 : 2,
+        z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sp: .6 + Math.random() * 1.6,
+        c: colors[Math.random() * colors.length | 0]
+      }));
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      for (const st of list) {
+        const a = calm ? .7 : .35 + .65 * Math.abs(Math.sin(t / 1000 * st.sp + st.ph));
+        const x = Math.round(st.x + mx * st.z * 14), y = Math.round(st.y + my * st.z * 14);
+        ctx.globalAlpha = a; ctx.fillStyle = st.c; ctx.fillRect(x, y, st.s, st.s);
+        if (st.s === 3 && a > .9) { ctx.globalAlpha = a * .5; ctx.fillRect(x - 3, y + 1, 9, 1); ctx.fillRect(x + 1, y - 3, 1, 9); }
+      }
+      ctx.globalAlpha = 1;
+      if (!calm) requestAnimationFrame(draw);
+    }
+    addEventListener('resize', resize);
+    addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+    resize(); requestAnimationFrame(draw);
+  })();
+
+  // 클릭하면 픽셀 조각이 팡! + 마우스 꼬리 빛
+  (function particles() {
+    if (calm) return;
+    const cv = document.getElementById('fx'), ctx = cv.getContext('2d');
+    let W, H, parts = [], running = false, lastTrail = 0;
+    const colors = ['#b08af5', '#7c4dcc', '#f2a7c8', '#ffffff', '#ffd34d'];
+    function resize() { const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+    function burst(x, y, n, power) {
+      for (let k = 0; k < n; k++) {
+        const ang = Math.random() * Math.PI * 2, v = power * (.4 + Math.random() * .8);
+        parts.push({ x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 1.5, g: .18, life: 1, dec: .02 + Math.random() * .02, s: Math.random() < .3 ? 4 : 3, c: colors[Math.random() * colors.length | 0] });
+      }
+      loop();
+    }
+    function trail(x, y) { parts.push({ x, y, vx: (Math.random() - .5) * .6, vy: -.3 - Math.random() * .5, g: 0, life: .8, dec: .03, s: 2, c: colors[Math.random() * 3 | 0] }); loop(); }
+    function loop() { if (!running) { running = true; requestAnimationFrame(tick); } }
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+      parts = parts.filter(p => (p.life -= p.dec) > 0);
+      for (const p of parts) {
+        p.vy += p.g; p.x += p.vx; p.y += p.vy;
+        ctx.globalAlpha = Math.max(p.life, 0); ctx.fillStyle = p.c; ctx.fillRect(Math.round(p.x), Math.round(p.y), p.s, p.s);
+      }
+      ctx.globalAlpha = 1;
+      if (parts.length) requestAnimationFrame(tick); else { running = false; ctx.clearRect(0, 0, W, H); }
+    }
+    addEventListener('resize', resize); resize();
+    addEventListener('pointerdown', e => burst(e.clientX, e.clientY, 14, 4));
+    addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const now = performance.now(); if (now - lastTrail < 28) return; lastTrail = now; trail(e.clientX, e.clientY);
+    });
+    // 이메일 복사 성공하면 크게 팡
+    document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => { const r = b.getBoundingClientRect(); setTimeout(() => burst(r.left + r.width / 2, r.top + r.height / 2, 36, 6), 50); }));
+  })();
 </script>
 </body>
 </html>
