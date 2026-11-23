@@ -1,225 +1,336 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eleven</title>
+  <meta name="description" content="게임 개발자 Eleven의 홈페이지. 다채로운 게임 콘텐츠로 삶의 재미를, 아름다운 세계 속에서 행복을.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Eleven">
+  <meta property="og:description" content="게임 개발자 Eleven의 홈페이지">
+  <meta property="og:url" content="https://eleven.me.kr/">
+  <link rel="canonical" href="https://eleven.me.kr/">
+  <link rel="icon" href="assets/home/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
   <style>
-    body
-    {
-      background-color: black;
-      color:white;
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 16px;
-      margin: 0;
-      padding: 20px;
+    :root {
+      --bg: #ffffff;
+      --ink: #15121c;
+      --muted: #6b6478;
+      --line: #ece8f3;
+      --soft: #f6f2fc;
+      --purple: #7c4dcc;
+      --purple-deep: #4b2a8a;
+      --pink: #f2a7c8;
+      --wrap: 1080px;
     }
-    a
-    {
-      color: skyblue;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
-    .line
-    {
-      white-space: pre-wrap;
-      margin: 4px 0;
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 16px; }
+
+    /* ---------- 상단 메뉴 ---------- */
+    .header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .header .wrap { display: flex; align-items: center; gap: 24px; min-height: 68px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; }
+    .brand img { width: 40px; height: 40px; }
+    .nav { margin-left: auto; display: flex; gap: 4px; }
+    .nav a {
+      text-decoration: none; font-weight: 700; font-size: 1.02rem; padding: 8px 12px; border-radius: 10px;
+      color: var(--ink); transition: background .15s, color .15s;
     }
-    .prompt
-    {
-      color: #4ade80;
+    .nav a:hover { background: var(--soft); color: var(--purple); }
+    .nav a[aria-current="page"] { color: var(--purple); }
+    .nav a[aria-current="page"]::after { content: ""; display: block; height: 2px; background: var(--purple); border-radius: 2px; margin-top: 2px; }
+    @media (max-width: 640px) {
+      .header .wrap { gap: 0; padding-top: 8px; }
+      .nav { margin: 0 -6px; width: calc(100% + 12px); justify-content: space-between; padding-bottom: 6px; gap: 0; }
+      .nav a { font-size: .9rem; padding: 8px 6px; white-space: nowrap; }
     }
-    #input-line
-    {
-      display: flex;
-      line-height: 1.5em;
+    @media (max-width: 380px) { .nav a { font-size: .82rem; padding: 8px 3px; } }
+
+    /* ---------- 화면 전환 (메뉴마다 한 화면) ---------- */
+    .page { display: none; animation: fade .35s ease; }
+    .page.on { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+    .page-head { padding: 56px 0 24px; }
+    .eyebrow { font-size: .8rem; font-weight: 800; letter-spacing: .16em; color: var(--purple); text-transform: uppercase; margin: 0; }
+    .page-head h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 6px 0 0; letter-spacing: -.02em; line-height: 1.15; }
+
+    /* ---------- 로비 ---------- */
+    .lobby { position: relative; overflow: hidden; background: linear-gradient(160deg, #f7f1ff 0%, #fdeef6 55%, #ffffff 100%); }
+    .lobby .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; min-height: calc(100vh - 69px); min-height: calc(100svh - 69px); padding-top: 40px; padding-bottom: 40px; }
+    .lobby h1 { font-size: clamp(3rem, 11vw, 6.5rem); line-height: 1; margin: 10px 0 0; letter-spacing: -.035em; }
+    .lobby h1 span { color: var(--purple); }
+    .lobby .lead { font-size: clamp(1.05rem, 2.4vw, 1.25rem); color: var(--muted); margin: 18px 0 0; max-width: 30em; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700;
+      padding: 12px 20px; border-radius: 12px; border: 2px solid var(--ink); transition: transform .15s, box-shadow .15s;
     }
-    /* 입력칸 + 회색 추천 글씨를 겹쳐 놓는 상자 */
-    #input-wrap
-    {
-      position: relative;
-      flex: 1;
-      margin-left: 8px;
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--ink); }
+    .btn.primary { background: var(--purple); border-color: var(--purple); color: #fff; }
+    .btn.primary:hover { box-shadow: 0 4px 0 var(--purple-deep); }
+    .next { margin-top: 26px; font-size: .9rem; color: var(--muted); }
+    .next b { color: var(--ink); }
+    /* 로비 그림: 나중에 게임/캐릭터 대표 이미지가 생기면 .lobby-art 안을 <img> 한 장으로 바꾸면 됨 */
+    .lobby-art { position: relative; aspect-ratio: 1; max-width: 460px; justify-self: center; width: 100%; }
+    .lobby-art .card {
+      position: absolute; width: 58%; border-radius: 24px; overflow: hidden; background: #fff;
+      border: 6px solid #fff; box-shadow: 0 18px 40px rgba(75, 42, 138, .18);
+      transition: transform .3s;
     }
-    #cmd
-    {
-      position: relative;
-      width: 100%;
-      height: 1.5em;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: white;
-      font: inherit;
-      line-height: 1.5em;
-      padding: 0;
-      margin: 0;
+    .lobby-art .card img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+    .lobby-art .c1 { left: 21%; top: 12%; z-index: 3; width: 62%; }
+    .lobby-art .c2 { left: 0; top: 34%; transform: rotate(-10deg); z-index: 2; }
+    .lobby-art .c3 { right: 0; top: 30%; transform: rotate(9deg); z-index: 1; }
+    .lobby-art:hover .c2 { transform: rotate(-14deg) translateX(-10px); }
+    .lobby-art:hover .c3 { transform: rotate(13deg) translateX(10px); }
+    .lobby-art .tag {
+      position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%); z-index: 4; white-space: nowrap;
+      background: var(--ink); color: #fff; font-weight: 700; font-size: .85rem; padding: 6px 14px; border-radius: 99px; text-decoration: none;
     }
-     /* 회색 추천 글씨 (입력칸 뒤에 깔림) */
-     #ghost
-    {
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #666;
-      white-space: pre;
-      pointer-events: none;
+    .umbrella-bg { position: absolute; right: -80px; top: -60px; width: 420px; opacity: .06; pointer-events: none; transform: rotate(12deg); }
+    @media (max-width: 800px) {
+      .lobby .wrap { grid-template-columns: 1fr; min-height: 0; text-align: left; padding-top: 32px; }
+      .lobby-art { max-width: 340px; order: -1; }
     }
-    #ghost .typed
-    {
-      color: transparent;
+
+    /* ---------- About ---------- */
+    .about-body { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding-bottom: 72px; }
+    .about-body .mission { font-size: clamp(1.15rem, 2.6vw, 1.45rem); line-height: 1.75; font-weight: 500; margin: 0; word-break: keep-all; }
+    .about-body .mission strong { color: var(--purple); }
+    .facts { margin: 0; padding: 24px; border-radius: 20px; background: var(--soft); display: grid; gap: 14px; align-content: start; }
+    .facts dt { font-size: .78rem; font-weight: 800; letter-spacing: .12em; color: var(--purple); text-transform: uppercase; }
+    .facts dd { margin: 2px 0 0; font-weight: 600; }
+    @media (max-width: 800px) { .about-body { grid-template-columns: 1fr; } }
+
+    /* ---------- Character ---------- */
+    .wip { display: inline-flex; align-items: center; gap: 6px; background: #fff4d6; color: #8a5a00; font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 99px; margin-top: 12px; }
+    .char { display: grid; grid-template-columns: 340px 1fr; gap: 40px; padding-bottom: 32px; align-items: start; }
+    .char-portrait { border-radius: 28px; overflow: hidden; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(75, 42, 138, .18); background: #fff; position: sticky; top: 90px; }
+    .char-portrait img { aspect-ratio: 1; object-fit: cover; width: 100%; transition: opacity .2s; }
+    .char h2 { font-size: 2.2rem; margin: 0; letter-spacing: -.02em; }
+    .char h2 small { font-size: 1.1rem; color: var(--muted); font-weight: 600; margin-left: 6px; }
+    .quote { margin: 14px 0 0; padding: 14px 18px; border-left: 4px solid var(--pink); background: #fff5fa; border-radius: 0 14px 14px 0; font-weight: 600; }
+    .profile { display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; margin: 24px 0 0; }
+    .profile dt { font-weight: 800; color: var(--purple); }
+    .profile dd { margin: 0; }
+    .faces-title { margin: 32px 0 12px; font-size: 1.1rem; }
+    .faces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; list-style: none; padding: 0; margin: 0; }
+    .faces button { width: 100%; padding: 0; border: 3px solid transparent; border-radius: 16px; overflow: hidden; background: #fff; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .faces button[aria-pressed="true"] { border-color: var(--purple); }
+    .faces img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+    .faces span { display: block; font-size: .8rem; font-weight: 700; padding: 4px 0 6px; }
+    .note { color: var(--muted); font-size: .92rem; margin-top: 24px; }
+    @media (max-width: 800px) {
+      .char { grid-template-columns: 1fr; gap: 24px; }
+      .char-portrait { max-width: 280px; position: static; }
     }
-    
+
+    /* ---------- 공사중 ---------- */
+    .construction { text-align: center; padding: 72px 0 96px; }
+    .construction .sign {
+      display: inline-block; font-size: 4rem; width: 132px; height: 132px; line-height: 132px; border-radius: 50%;
+      background: repeating-linear-gradient(-45deg, #ffd34d 0 16px, #222 16px 32px); margin-bottom: 20px;
+    }
+    .construction .sign span { display: inline-block; background: #fff; border-radius: 50%; width: 96px; height: 96px; line-height: 96px; font-size: 3rem; vertical-align: middle; }
+    .construction h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 0; }
+    .construction p { color: var(--muted); margin: 10px 0 0; }
+
+    /* ---------- Contact ---------- */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; padding-bottom: 72px; }
+    .contact-card {
+      display: block; text-decoration: none; padding: 22px; border-radius: 20px; border: 2px solid var(--line);
+      transition: border-color .15s, transform .15s;
+    }
+    .contact-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+    .contact-card .ico { font-size: 1.8rem; }
+    .contact-card h2 { font-size: 1.05rem; margin: 8px 0 2px; }
+    .contact-card p { margin: 0; color: var(--muted); word-break: break-all; }
+    .contact-card.main { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .contact-card.main p { color: #d8d0e8; font-weight: 600; font-size: 1.1rem; }
+    .copy { margin-top: 12px; border: 0; background: #fff; color: var(--ink); font: inherit; font-weight: 700; font-size: .85rem; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+
+    /* ---------- 아래 ---------- */
+    .footer { border-top: 1px solid var(--line); padding: 22px 0 28px; color: var(--muted); font-size: .88rem; }
+    .footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .footer a { color: var(--muted); }
   </style>
 </head>
-
-  
 <body>
-  <div id="output"></div>
-  <div id="input-line">
-    <span class="prompt">eleven:~$</span>
-    <div id="input-wrap">
-      <span id="ghost"> </span>
-      <input id="cmd" type="text" autofocus autocomplete="off" spellcheck="false">
-    </div>
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#lobby" data-go="lobby"><img src="assets/home/logo.svg" alt="">Eleven</a>
+    <nav class="nav" aria-label="메뉴">
+      <a href="#about" data-go="about">about</a>
+      <a href="portfolio/">portfolio</a>
+      <a href="#character" data-go="character">character</a>
+      <a href="#music" data-go="music">music</a>
+      <a href="#contact" data-go="contact">contact</a>
+    </nav>
   </div>
-  
-  <script>
-    const output = document.getElementById("output");
-    const cmd = document.getElementById("cmd");
-    const ghost = document.getElementById("ghost");
+</header>
 
-    // 명령어 목록, (명령어:출력할내용)의 형식으로 추가 가능
-    const commands =
-    {
-      help: "command list: help, about, launch_link, portfolio_link, blog_link, next, contact, clear",
-      about: "(name: Eleven) <br>(class: game dev, prompt engineer) <br>(part: Engineer, Game Design) <br>(program: Unity, CLAUDE, github)", // (tmi: 2004, man, south korea, honorable discharge at ROKA)
-      launch_link: 'playstore: <a href="https://play.google.com/store/apps/dev?id=8043178918719227338&hl=ko" target="_blank">playstore</a>',
-      portfolio_link: 'portfolio: <a href="https://eleven.me.kr/portfolio/" target="_blank">portfolio</a>',
-      blog_link: 'blog: <a href="https://m.blog.naver.com/PostList.naver?blogId=rikka7061" target="_blank">blog</a>',
-      contact: "hdgehsdj.sn@gmail.com",
-      next:  "steam launch"
+<main>
+  <!-- 로비 (첫 화면) -->
+  <section class="page lobby on" id="p-lobby" aria-label="로비">
+    <img class="umbrella-bg" src="assets/home/logo.svg" alt="">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Game Developer</p>
+        <h1>Eleven<span>.</span></h1>
+        <p class="lead">다채로운 게임 콘텐츠로 삶의 재미를,<br>아름다운 세계 속에서 행복을.</p>
+        <div class="actions">
+          <a class="btn primary" href="portfolio/">포트폴리오 보기 →</a>
+          <a class="btn" href="#character" data-go="character">캐릭터 만나기</a>
+        </div>
+        <p class="next">NEXT · <b>Steam 출시 준비 중</b></p>
+      </div>
+      <!-- 나중에 로비 대표 이미지가 생기면: <div class="lobby-art"><img src="assets/home/lobby.webp" alt="..."></div> 로 교체 -->
+      <div class="lobby-art">
+        <a class="card c2" href="#character" data-go="character" tabindex="-1"><img src="assets/characters/emily/emily_smug.webp" alt=""></a>
+        <a class="card c3" href="#character" data-go="character" tabindex="-1"><img src="assets/characters/emily/emily_shy.webp" alt=""></a>
+        <a class="card c1" href="#character" data-go="character"><img src="assets/characters/emily/emily_happy.webp" alt="에밀리"></a>
+        <a class="tag" href="#character" data-go="character">🐰 에밀리를 소개할게요</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="page" id="p-about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="page-head">
+        <p class="eyebrow">About</p>
+        <h1 id="about-title">Eleven</h1>
+      </div>
+      <div class="about-body">
+        <p class="mission">Eleven은 한 사람의 개발자로서 <strong>많은 사람들이 좋아하고 재밌어하는 게임</strong>을 제작하는 것을 목표로 합니다. 다채로운 게임의 콘텐츠를 통해 <strong>삶의 재미</strong>를 주는 것, 아름다운 세계 속에서 <strong>행복</strong>을 제공하는 것이 저의 목표입니다.</p>
+        <dl class="facts">
+          <div><dt>Class</dt><dd>Game Developer · Prompt Engineer</dd></div>
+          <div><dt>Part</dt><dd>Engineer · Game Design</dd></div>
+          <div><dt>Tools</dt><dd>Unity · Claude · GitHub</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Character -->
+  <section class="page" id="p-character" aria-labelledby="char-title">
+    <div class="wrap">
+      <div class="page-head">
+        <p class="eyebrow">Character</p>
+        <h1 id="char-title">캐릭터</h1>
+        <span class="wip">🚧 공사중 · 캐릭터가 계속 추가될 예정이에요</span>
+      </div>
+      <article class="char">
+        <div class="char-portrait"><img id="charImg" src="assets/characters/emily/emily_normal.webp" alt="에밀리"></div>
+        <div>
+          <h2>에밀리 <small>Emily</small></h2>
+          <p class="quote">“난… 그냥 여기 있는 거 좋아하는 것 뿐이야!”</p>
+          <dl class="profile">
+            <dt>나이</dt><dd>17세 (생전 기준)</dd>
+            <dt>키</dt><dd>148cm (추정)</dd>
+            <dt>성격</dt><dd>츤데레, 장난기 많음, 약간의 질투심, 순수함</dd>
+            <dt>좋아하는 것</dt><dd>집, 초콜릿, 토끼 인형, James (특별함…?)</dd>
+            <dt>싫어하는 것</dt><dd>귀찮은 거, 다른 여자, 어두운 곳</dd>
+          </dl>
+          <h3 class="faces-title">다양한 표정</h3>
+          <ul class="faces" id="faces"></ul>
+          <p class="note">조금 까칠해도, 사실은 엄청나게 외로운 아이…</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Music -->
+  <section class="page" id="p-music" aria-labelledby="music-title">
+    <div class="wrap construction">
+      <div class="sign" aria-hidden="true"><span>🎵</span></div>
+      <p class="eyebrow">Music</p>
+      <h1 id="music-title">공사중이에요</h1>
+      <p>게임 음악을 준비하고 있어요. 조금만 기다려 주세요!</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="page" id="p-contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="page-head">
+        <p class="eyebrow">Contact</p>
+        <h1 id="contact-title">연락하기</h1>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card main">
+          <div class="ico">✉️</div>
+          <h2>이메일</h2>
+          <p><a href="mailto:hdgehsdj.sn@gmail.com" style="text-decoration:none">hdgehsdj.sn@gmail.com</a></p>
+          <button class="copy" type="button" data-copy="hdgehsdj.sn@gmail.com">주소 복사</button>
+        </div>
+        <a class="contact-card" href="https://m.blog.naver.com/PostList.naver?blogId=rikka7061" target="_blank" rel="noopener">
+          <div class="ico">📝</div><h2>블로그 ↗</h2><p>개발 이야기와 일상</p>
+        </a>
+        <a class="contact-card" href="https://play.google.com/store/apps/dev?id=8043178918719227338&hl=ko" target="_blank" rel="noopener">
+          <div class="ico">🎮</div><h2>플레이스토어 ↗</h2><p>출시한 게임 모음</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Eleven</span>
+    <span><a href="terminal/">터미널 모드</a> · <a href="portfolio/">포트폴리오</a></span>
+  </div>
+</footer>
+
+<script>
+  // ---------- 메뉴 누르면 해당 화면만 보여 주기 (주소 #about 처럼 바뀜) ----------
+  const pages = ['lobby', 'about', 'character', 'music', 'contact'];
+  function show(name) {
+    if (!pages.includes(name)) name = 'lobby';
+    document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.id === 'p-' + name));
+    document.querySelectorAll('.nav a[data-go]').forEach(a => {
+      if (a.dataset.go === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    document.title = name === 'lobby' ? 'Eleven' : name[0].toUpperCase() + name.slice(1) + ' · Eleven';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+  show(location.hash.slice(1));
+
+  // ---------- 에밀리 표정 고르기 ----------
+  const faces = [
+    ['normal', '기본'], ['happy', '기쁨'], ['sad', '울먹'], ['surprised', '놀람'],
+    ['worried', '걱정'], ['angry', '화남'], ['shy', '부끄러움'], ['smug', '장난기']
+  ];
+  const list = document.getElementById('faces'), big = document.getElementById('charImg');
+  faces.forEach(([key, label], i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<button type="button" aria-pressed="${i === 0}"><img src="assets/characters/emily/emily_${key}.webp" alt="" loading="lazy"><span>${label}</span></button>`;
+    li.querySelector('button').onclick = e => {
+      big.src = `assets/characters/emily/emily_${key}.webp`;
+      big.alt = '에밀리 · ' + label;
+      list.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === e.currentTarget));
     };
+    list.appendChild(li);
+  });
 
-    // 자동완성에 쓸 전체 명령어 이름 (commands 목록 + clear)
-    const allCommands = Object.keys(commands).concat("clear");
-    
-    // 화면에 한 줄 출력 (출력할 때 출력 방식인듯;;)
-    function print(html)
-    {
-      const div = document.createElement("div");
-      div.className = "line";
-      div.innerHTML = html;
-      output.appendChild(div);
-    }
+  // ---------- 이메일 주소 복사 ----------
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
+    try { await navigator.clipboard.writeText(btn.dataset.copy); btn.textContent = '복사했어요 ✓'; }
+    catch (e) { btn.textContent = '길게 눌러 복사하세요'; }
+    setTimeout(() => btn.textContent = '주소 복사', 1800);
+  });
 
-    // 입력한 글자 속 < > & 기호가 HTML로 실행되지 않게 바꿔주기
-    function escapeHtml(text)
-    {
-      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-
-    // 입력한 글자로 시작하는 명령어 찾기 (없으면 빈 글자)
-    function findSuggestion(text)
-    {
-      if (text == "") return "";
-
-      for (const name of allCommands)
-      {
-        if (name.startsWith(text) && name != text) return name;
-      }
-      return "";
-    }
-
-    // 회색 추천 글씨 업데이트
-    function updateGhost()
-    {
-      const text = cmd.value.toLowerCase();
-      const suggestion = findSuggestion(text);
-      if(suggestion == "")
-      {
-        ghost.innerHTML = "";
-      }
-      else
-      {
-        // 이미 친 부분은 투명하게 나머지만 회색으로 보여줌
-        ghost.innerHTML = '<span class="typed">' + escapeHtml(cmd.value) + '</span>' + suggestion.slice(text.length);
-      }
-    }
-
-    // 글자를 칠 때마다 추천 업데이트
-    cmd.addEventListener("input", updateGhost);
-
-    // tab 또는 -> 키를 누르면 추천 명령어로 채우기
-    cmd.addEventListener("keydown", function(e)
-    {
-      if (e.key != "Tab" && e.key != "ArrowRight") return;
-
-      // -> 키는 커서가 맨 끝에 있을 때만 자동완성
-      if (e.key == "ArrowRight" && cmd.selectionStart != cmd.value.length) return;
-
-      const suggestion = findSuggestion(cmd.value.toLowerCase());
-      if(suggestion != "")
-      {
-        e.preventDefault();
-        cmd.value = suggestion;
-        updateGhost();
-      }
-      else if (e.key == "Tab")
-      {
-        e.preventDefault(); // 추천이 없어도 Tab 때문에 입력칸 밖으로 나가지 않게
-      }
-    });                 
-    
-    // hello world!
-    print("Well Come ~");
-    print("Enter 'help'");
-    
-    // 엔터 눌렀을 때 실행되는 것들
-    cmd.addEventListener("keydown", function (e)
-    {
-      if (e.key !== "Enter") return;
-
-      let text = cmd.value.trim().toLowerCase();
-
-      // 명령어를 끝까지 안 쳐도, 추천(회색 글씨)이 있으면 그걸로 채워서 실행 (모바일용: ab + 엔터 → about)
-      if (!commands.hasOwnProperty(text) && text != "clear")
-      {
-        const suggestion = findSuggestion(text);
-        if (suggestion != "") text = suggestion;
-      }
-
-      cmd.value = "";
-      updateGhost(); // 입력칸을 비운 뒤에 회색 추천 글씨도 지우기
-      print('<span class="prompt">eleven:~$</span> ' + escapeHtml(text));
-
-      if (text == "")
-      { 
-        print("if you in trouble, you can enter 'help'");
-      }
-      else if (text == "clear")
-      {
-        output.innerHTML = "";
-      }
-      else if (commands.hasOwnProperty(text))
-      {
-        print(commands[text]);
-      }
-      else
-      {
-        print("command not found: " + escapeHtml(text));
-        print("if you in trouble, you can enter 'help'");
-      }
-
-      window.scrollTo(0, document.body.scrollHeight);
-    });
-
-    // 화면 아무 데나 클릭시(단, 글자 드래그 제외) -> 입력칸 커서로 이동
-    document.addEventListener("click", function()
-    {
-      if (!window.getSelection().toString()) cmd.focus();
-    });
-                               
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
-
 </html>

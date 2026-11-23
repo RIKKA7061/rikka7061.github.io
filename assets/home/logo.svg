@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Eleven 로고: 보라색 우산 -->
+  <g transform="rotate(-28 32 32)" stroke="#1a1424" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M32 9 V53" fill="none"/>
+    <path d="M32 53 q0 7 -5.5 7 q-5 0 -5 -5" fill="none"/>
+    <path d="M5 32 Q8 10 32 10 Q56 10 59 32 Q52.2 27.5 45.5 32 Q38.8 27.5 32 32 Q25.2 27.5 18.5 32 Q11.8 27.5 5 32Z" fill="#7c4dcc"/>
+    <path d="M32 10 Q24 16 18.5 32 M32 10 Q40 16 45.5 32" fill="none" stroke-width="1.8"/>
+    <path d="M32 10 Q24 16 18.5 32 Q25.2 27.5 32 32 Z" fill="#a97ff0" stroke="none"/>
+    <path d="M32 10 Q24 16 18.5 32" fill="none" stroke-width="1.8"/>
+    <circle cx="32" cy="7" r="2.2" fill="#1a1424" stroke="none"/>
+  </g>
+</svg>
