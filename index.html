@@ -81,17 +81,13 @@
     .next b { color: var(--ink); }
     /* 로비 그림: 나중에 게임/캐릭터 대표 이미지가 생기면 .lobby-art 안을 <img> 한 장으로 바꾸면 됨 */
     .lobby-art { position: relative; aspect-ratio: 1; max-width: 460px; justify-self: center; width: 100%; }
-    .lobby-art .card {
-      position: absolute; width: 58%; border-radius: 24px; overflow: hidden; background: #fff;
-      border: 6px solid #fff; box-shadow: 0 18px 40px rgba(75, 42, 138, .18);
-      transition: transform .3s;
+    .lobby-art .orb {
+      position: absolute; inset: 6%; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffffff 0%, #efe4ff 45%, #e2d0fb 100%);
+      box-shadow: 0 24px 60px rgba(75, 42, 138, .18), inset 0 0 0 10px rgba(255,255,255,.6);
     }
-    .lobby-art .card img { aspect-ratio: 1; object-fit: cover; width: 100%; }
-    .lobby-art .c1 { left: 21%; top: 12%; z-index: 3; width: 62%; }
-    .lobby-art .c2 { left: 0; top: 34%; transform: rotate(-10deg); z-index: 2; }
-    .lobby-art .c3 { right: 0; top: 30%; transform: rotate(9deg); z-index: 1; }
-    .lobby-art:hover .c2 { transform: rotate(-14deg) translateX(-10px); }
-    .lobby-art:hover .c3 { transform: rotate(13deg) translateX(10px); }
+    .lobby-art .orb img { position: absolute; inset: 16%; width: 68%; transition: transform .6s; }
+    .lobby-art:hover .orb img { transform: rotate(-8deg) translateY(-6px); }
     .lobby-art .tag {
       position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%); z-index: 4; white-space: nowrap;
       background: var(--ink); color: #fff; font-weight: 700; font-size: .85rem; padding: 6px 14px; border-radius: 99px; text-decoration: none;
@@ -110,29 +106,6 @@
     .facts dt { font-size: .78rem; font-weight: 800; letter-spacing: .12em; color: var(--purple); text-transform: uppercase; }
     .facts dd { margin: 2px 0 0; font-weight: 600; }
     @media (max-width: 800px) { .about-body { grid-template-columns: 1fr; } }
-
-    /* ---------- Character ---------- */
-    .wip { display: inline-flex; align-items: center; gap: 6px; background: #fff4d6; color: #8a5a00; font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 99px; margin-top: 12px; }
-    .char { display: grid; grid-template-columns: 340px 1fr; gap: 40px; padding-bottom: 32px; align-items: start; }
-    .char-portrait { border-radius: 28px; overflow: hidden; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(75, 42, 138, .18); background: #fff; position: sticky; top: 90px; }
-    .char-portrait img { aspect-ratio: 1; object-fit: cover; width: 100%; transition: opacity .2s; }
-    .char h2 { font-size: 2.2rem; margin: 0; letter-spacing: -.02em; }
-    .char h2 small { font-size: 1.1rem; color: var(--muted); font-weight: 600; margin-left: 6px; }
-    .quote { margin: 14px 0 0; padding: 14px 18px; border-left: 4px solid var(--pink); background: #fff5fa; border-radius: 0 14px 14px 0; font-weight: 600; }
-    .profile { display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; margin: 24px 0 0; }
-    .profile dt { font-weight: 800; color: var(--purple); }
-    .profile dd { margin: 0; }
-    .faces-title { margin: 32px 0 12px; font-size: 1.1rem; }
-    .faces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; list-style: none; padding: 0; margin: 0; }
-    .faces button { width: 100%; padding: 0; border: 3px solid transparent; border-radius: 16px; overflow: hidden; background: #fff; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-    .faces button[aria-pressed="true"] { border-color: var(--purple); }
-    .faces img { aspect-ratio: 1; object-fit: cover; width: 100%; }
-    .faces span { display: block; font-size: .8rem; font-weight: 700; padding: 4px 0 6px; }
-    .note { color: var(--muted); font-size: .92rem; margin-top: 24px; }
-    @media (max-width: 800px) {
-      .char { grid-template-columns: 1fr; gap: 24px; }
-      .char-portrait { max-width: 280px; position: static; }
-    }
 
     /* ---------- 공사중 ---------- */
     .construction { text-align: center; padding: 72px 0 96px; }
@@ -189,16 +162,14 @@
         <p class="lead">다채로운 게임 콘텐츠로 삶의 재미를,<br>아름다운 세계 속에서 행복을.</p>
         <div class="actions">
           <a class="btn primary" href="portfolio/">포트폴리오 보기 →</a>
-          <a class="btn" href="#character" data-go="character">캐릭터 만나기</a>
+          <a class="btn" href="#about" data-go="about">Eleven 소개</a>
         </div>
         <p class="next">NEXT · <b>Steam 출시 준비 중</b></p>
       </div>
-      <!-- 나중에 로비 대표 이미지가 생기면: <div class="lobby-art"><img src="assets/home/lobby.webp" alt="..."></div> 로 교체 -->
+      <!-- 나중에 로비 대표 이미지(게임·캐릭터)가 생기면 .lobby-art 안을 <img src="assets/home/lobby.webp" alt="..."> 한 장으로 교체 -->
       <div class="lobby-art">
-        <a class="card c2" href="#character" data-go="character" tabindex="-1"><img src="assets/characters/emily/emily_smug.webp" alt=""></a>
-        <a class="card c3" href="#character" data-go="character" tabindex="-1"><img src="assets/characters/emily/emily_shy.webp" alt=""></a>
-        <a class="card c1" href="#character" data-go="character"><img src="assets/characters/emily/emily_happy.webp" alt="에밀리"></a>
-        <a class="tag" href="#character" data-go="character">🐰 에밀리를 소개할게요</a>
+        <div class="orb"><img src="assets/home/logo.svg" alt="Eleven 로고 (보라색 우산)"></div>
+        <span class="tag">🎮 새 게임 준비 중</span>
       </div>
     </div>
   </section>
@@ -223,29 +194,11 @@
 
   <!-- Character -->
   <section class="page" id="p-character" aria-labelledby="char-title">
-    <div class="wrap">
-      <div class="page-head">
-        <p class="eyebrow">Character</p>
-        <h1 id="char-title">캐릭터</h1>
-        <span class="wip">🚧 공사중 · 캐릭터가 계속 추가될 예정이에요</span>
-      </div>
-      <article class="char">
-        <div class="char-portrait"><img id="charImg" src="assets/characters/emily/emily_normal.webp" alt="에밀리"></div>
-        <div>
-          <h2>에밀리 <small>Emily</small></h2>
-          <p class="quote">“난… 그냥 여기 있는 거 좋아하는 것 뿐이야!”</p>
-          <dl class="profile">
-            <dt>나이</dt><dd>17세 (생전 기준)</dd>
-            <dt>키</dt><dd>148cm (추정)</dd>
-            <dt>성격</dt><dd>츤데레, 장난기 많음, 약간의 질투심, 순수함</dd>
-            <dt>좋아하는 것</dt><dd>집, 초콜릿, 토끼 인형, James (특별함…?)</dd>
-            <dt>싫어하는 것</dt><dd>귀찮은 거, 다른 여자, 어두운 곳</dd>
-          </dl>
-          <h3 class="faces-title">다양한 표정</h3>
-          <ul class="faces" id="faces"></ul>
-          <p class="note">조금 까칠해도, 사실은 엄청나게 외로운 아이…</p>
-        </div>
-      </article>
+    <div class="wrap construction">
+      <div class="sign" aria-hidden="true"><span>🎨</span></div>
+      <p class="eyebrow">Character</p>
+      <h1 id="char-title">공사중이에요</h1>
+      <p>게임 속 캐릭터를 준비하고 있어요. 조금만 기다려 주세요!</p>
     </div>
   </section>
 
@@ -305,23 +258,6 @@
   }
   window.addEventListener('hashchange', () => show(location.hash.slice(1)));
   show(location.hash.slice(1));
-
-  // ---------- 에밀리 표정 고르기 ----------
-  const faces = [
-    ['normal', '기본'], ['happy', '기쁨'], ['sad', '울먹'], ['surprised', '놀람'],
-    ['worried', '걱정'], ['angry', '화남'], ['shy', '부끄러움'], ['smug', '장난기']
-  ];
-  const list = document.getElementById('faces'), big = document.getElementById('charImg');
-  faces.forEach(([key, label], i) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<button type="button" aria-pressed="${i === 0}"><img src="assets/characters/emily/emily_${key}.webp" alt="" loading="lazy"><span>${label}</span></button>`;
-    li.querySelector('button').onclick = e => {
-      big.src = `assets/characters/emily/emily_${key}.webp`;
-      big.alt = '에밀리 · ' + label;
-      list.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === e.currentTarget));
-    };
-    list.appendChild(li);
-  });
 
   // ---------- 이메일 주소 복사 ----------
   document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
