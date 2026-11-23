@@ -27,10 +27,11 @@ eleven.me.kr 홈페이지의 디자인을 다른 사이트·프로젝트·AI에 
   radial-gradient(ellipse at 75% 40%, rgba(124,77,204,.28), transparent 60%)
   + linear-gradient(160deg, #1b1230, #140e20 55%, #0e0b14)
 
-[글꼴]
-- Pretendard (CDN: https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css)
-- 본문 줄 간격 1.6, 한글은 word-break: keep-all
-- 큰 제목은 굵게(800) + 자간을 좁게(-0.02em ~ -0.035em)
+[글꼴: 도트 게임 느낌]
+- 갈무리11 (Galmuri11, 한글 도트 글꼴, SIL OFL 1.1) — 굵기 400·700
+  (npm galmuri@2.40.3 의 dist/Galmuri11.woff2, Galmuri11-Bold.woff2 를 사이트에 직접 넣어서 사용)
+- 본문 줄 간격 1.7, 한글은 word-break: keep-all
+- 큰 제목은 굵게(700), 도트 글꼴이라 자간은 0 (좁히지 않음)
 - 섹션 위 작은 제목(eyebrow): 0.8rem, 굵기 800, 대문자, 자간 0.16em, 보라색
 
 [레이아웃]
@@ -53,6 +54,19 @@ eleven.me.kr 홈페이지의 디자인을 다른 사이트·프로젝트·AI에 
 - 정보 박스: 배경 #1a1426, 모서리 20px, 안쪽 여백 24px
 - 알약 모양 태그: 보라 배경, 흰 글자, 모서리 99px
 - 화면이 바뀔 때 아래에서 8px 올라오며 서서히 나타남(0.35초)
+
+[움직임 효과]
+- 배경: 캔버스에 2~3px 픽셀 별이 반짝임(보라·분홍·흰색), 마우스를 따라 살짝 움직임
+- 화면 전체에 옛날 모니터 같은 가는 가로줄(투명도 낮게)
+- 버튼: 마우스를 올리면 네온 불빛(보라 box-shadow 번짐) + 흰 빛이 왼쪽→오른쪽으로 쓸고 지나감, 누르면 2px 눌림
+- 메뉴: 마우스를 올리면 글자가 빛나고(text-shadow) 밑줄이 계단식(steps)으로 자람
+- 작은 제목 앞에 깜빡이는 ▶
+- 화면이 바뀔 때 계단식(steps(6))으로 끊기며 나타남
+- 첫 화면 제목: 글자가 하나씩 위에서 떨어지고, 끝에 깜빡이는 픽셀 커서. 설명은 타자 치듯 한 글자씩
+- 소개 문장: 단어가 하나씩 흐림→선명하게 천천히 올라옴, 강조 단어는 은은하게 빛남
+- 카드: 차례로 올라오며 등장, 마우스를 따라 3D로 기울고 마우스 위치에 빛이 비침
+- 클릭하면 픽셀 조각이 팡 터지고, 마우스를 움직이면 작은 빛 꼬리가 남음
+- prefers-reduced-motion(움직임 줄이기)을 켠 사람에게는 모든 효과를 끔
 
 [피할 것]
 - 보라 외의 강조색을 추가하지 말 것
@@ -82,8 +96,8 @@ eleven.me.kr 홈페이지의 디자인을 다른 사이트·프로젝트·AI에 
 
 | 쓰는 곳 | 크기 | 굵기 |
 |---|---|---|
-| 첫 화면 큰 제목 | `clamp(3rem, 11vw, 6.5rem)` | 800, 자간 -0.035em, 줄 간격 1 |
-| 페이지 제목 | `clamp(2rem, 6vw, 3rem)` | 800, 자간 -0.02em |
+| 첫 화면 큰 제목 | `clamp(3rem, 11vw, 6.5rem)` | 700, 자간 0, 줄 간격 1.05 |
+| 페이지 제목 | `clamp(2rem, 6vw, 3rem)` | 700, 자간 0 |
 | 소개 문장 (강조 본문) | `clamp(1.15rem, 2.6vw, 1.45rem)` | 500, 줄 간격 1.75 |
 | 첫 화면 설명 | `clamp(1.05rem, 2.4vw, 1.25rem)` | 기본, 보조 글자색 |
 | 사이트 이름 | `1.35rem` | 800 |
@@ -182,7 +196,17 @@ eleven.me.kr 홈페이지의 디자인을 다른 사이트·프로젝트·AI에 
 
 ---
 
-## 4. 로고
+## 4. 글꼴 파일
+
+- `assets/fonts/Galmuri11.woff2`, `assets/fonts/Galmuri11-Bold.woff2` (라이선스: `assets/fonts/Galmuri-OFL.md`)
+
+```css
+@font-face { font-family: Galmuri11; font-weight: 400; font-display: swap; src: url('/assets/fonts/Galmuri11.woff2') format('woff2'); }
+@font-face { font-family: Galmuri11; font-weight: 700; font-display: swap; src: url('/assets/fonts/Galmuri11-Bold.woff2') format('woff2'); }
+body { font-family: Galmuri11, Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; }
+```
+
+## 5. 로고
 
 - 파일: `assets/home/logo.svg`(검은 테두리, 밝은 배경·탭 아이콘용), `assets/home/logo-light.svg`(밝은 테두리, 어두운 배경용)
 - 모양: 왼쪽으로 기울어진 보라색 우산. 몸통 `#7c4dcc`, 왼쪽 면 밝은 보라 `#a97ff0`.
