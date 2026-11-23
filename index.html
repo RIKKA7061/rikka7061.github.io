@@ -54,9 +54,9 @@
     @media (max-width: 640px) {
       .header .wrap { gap: 0; padding-top: 8px; }
       .nav { margin: 0 -6px; width: calc(100% + 12px); justify-content: space-between; padding-bottom: 6px; gap: 0; }
-      .nav a { font-size: .9rem; padding: 8px 6px; white-space: nowrap; }
+      .nav a { font-size: .86rem; padding: 8px 4px; white-space: nowrap; }
     }
-    @media (max-width: 380px) { .nav a { font-size: .82rem; padding: 8px 3px; } }
+    @media (max-width: 380px) { .nav { overflow-x: auto; scrollbar-width: none; } .nav a { font-size: .76rem; padding: 8px 1px; } }
 
     /* ---------- 화면 전환 (메뉴마다 한 화면) ---------- */
     .page { display: none; animation: fade .35s ease; }
@@ -147,6 +147,7 @@
     <nav class="nav" aria-label="메뉴">
       <a href="#about" data-go="about">about</a>
       <a href="portfolio/">portfolio</a>
+      <a href="BibleNote/">BibleNote</a>
       <a href="#character" data-go="character">character</a>
       <a href="#music" data-go="music">music</a>
       <a href="#contact" data-go="contact">contact</a>
@@ -243,7 +244,7 @@
 <footer class="footer">
   <div class="wrap">
     <span>© <span id="year">2026</span> Eleven</span>
-    <span><a href="terminal/">터미널 모드</a> · <a href="portfolio/">포트폴리오</a></span>
+    <span><a href="terminal/">터미널 모드</a> · <a href="portfolio/">포트폴리오</a> · <a href="BibleNote/">BibleNote</a></span>
   </div>
 </footer>
 
