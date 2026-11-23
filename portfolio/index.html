@@ -181,22 +181,24 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 .links div{display:grid;grid-template-columns:36mm 1fr;gap:4mm;padding:1.3mm 0;font-size:.9rem}
 .links dt{color:var(--ink-3)}
 
-/* ===== 화면 전용: Eleven 상단 메뉴 (홈페이지와 같은 모양) ===== */
-.site-header{position:sticky;top:0;z-index:20;margin:-28px -12px 28px;background:rgba(14,11,20,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #2a2338;color:#ece8f5;font-size:16px;line-height:1.6}
+/* ===== 화면 전용: Eleven 상단 메뉴 (홈페이지와 같은 모양) =====
+   이 페이지는 인쇄용으로 기본 글자가 작아(9.6pt) rem 대신 메뉴 기준(16px)의 em 을 쓴다 */
+.site-header{position:sticky;top:0;z-index:20;margin:-28px -12px 28px;background:rgba(14,11,20,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #2a2338;color:#ece8f5;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .site-header .wrap{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:24px;min-height:68px;flex-wrap:wrap}
-.site-header .brand{display:flex;align-items:center;gap:10px;color:#ece8f5;text-decoration:none;font-weight:800;font-size:1.35rem;letter-spacing:-.01em}
+.site-header .brand:hover{text-decoration:none}
+.site-header .brand{display:flex;align-items:center;gap:10px;color:#ece8f5;text-decoration:none;font-weight:800;font-size:1.35em;letter-spacing:-.01em}
 .site-header .brand img{width:40px;height:40px}
 .site-header nav{margin-left:auto;display:flex;gap:4px}
-.site-header nav a{color:#ece8f5;text-decoration:none;font-weight:700;font-size:1.02rem;padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
-.site-header nav a:hover{background:#1a1426;color:#b08af5}
+.site-header nav a{color:#ece8f5;text-decoration:none;font-weight:700;font-size:1.02em;padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
+.site-header nav a:hover{background:#1a1426;color:#b08af5;text-decoration:none}
 .site-header nav a[aria-current="page"]{color:#b08af5}
 .site-header nav a[aria-current="page"]::after{content:"";display:block;height:2px;background:#b08af5;border-radius:2px;margin-top:2px}
 @media (max-width:640px){
   .site-header .wrap{gap:0;padding-top:8px}
   .site-header nav{margin:0 -6px;width:calc(100% + 12px);justify-content:space-between;padding-bottom:6px;gap:0}
-  .site-header nav a{font-size:.86rem;padding:8px 4px;white-space:nowrap}
+  .site-header nav a{font-size:.86em;padding:8px 4px;white-space:nowrap}
 }
-@media (max-width:380px){.site-header nav{overflow-x:auto;scrollbar-width:none}.site-header nav a{font-size:.76rem;padding:8px 1px}}
+@media (max-width:380px){.site-header nav{overflow-x:auto;scrollbar-width:none}.site-header nav a{font-size:.76em;padding:8px 1px}}
 
 /* ===== 화면 전용 버튼 ===== */
 .toolbar{position:fixed;right:16px;bottom:16px;display:flex;gap:8px;z-index:10}
