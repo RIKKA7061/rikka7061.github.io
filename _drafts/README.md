@@ -21,4 +21,4 @@ Play Console 의 「앱 콘텐츠 → 데이터 보안」에 적은 내용과 �
 1. [확인 필요] 표시를 모두 고치고 지웁니다.
 2. 파일을 `games/<게임>/privacy.html` 로 옮깁니다. (예: `privacy/dna.html` → `games/dna/privacy.html`)
 3. 게임 페이지(`games/<게임>/index.html`)에 `<a href="privacy.html">개인정보처리방침</a>` 링크를 넣습니다.
-4. Play Console 의 개인정보처리방침 URL 에 `https://rikka7061.github.io/games/<게임>/privacy.html` 을 등록합니다.
+4. Play Console 의 개인정보처리방침 URL 에 `https://eleven.me.kr/games/<게임>/privacy.html` 을 등록합니다.
