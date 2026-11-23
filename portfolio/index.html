@@ -5,31 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eleven 포트폴리오</title>
 <meta name="description" content="Unity 게임 프로그래머 Eleven의 포트폴리오">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231d2c6c'/%3E%3Cpath fill='%23f4cb63' d='M12 4.5c.4 3.8 3.7 7.1 7.5 7.5-3.8.4-7.1 3.7-7.5 7.5-.4-3.8-3.7-7.1-7.5-7.5 3.8-.4 7.1-3.7 7.5-7.5z'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0e0b14">
+<link rel="icon" href="../assets/home/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
 <style>
-/* ===== 토큰: 기본값은 종이(인쇄)용, 화면에서는 밤 테마 ===== */
+/* ===== 토큰: 기본값은 종이(인쇄)용, 화면에서는 밤 테마 — Eleven 테마(보라 한 가지 강조) ===== */
 :root{
-  --font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --paper:#ffffff; --backdrop:#e7eaf2;
-  --ink:#161a2d; --ink-2:#454c63; --ink-3:#666c82;
-  --line:#e1e5ee; --line-2:#c6ccdc;
-  --iris:#25387c; --iris-soft:#edf0fa;
-  --gold:#d6a22a; --gold-ink:#8a620a; --gold-soft:#fbf3df;
-  --pink:#bb4775; --pink-soft:#fcebf2;
-  --link:#0a6c90; --heart:#33b3d7; --dot:#b3bcd6;
+  --font:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --paper:#ffffff; --backdrop:#ece8f5;
+  --ink:#1c1626; --ink-2:#4a4258; --ink-3:#6b6380;
+  --line:#e6e1ef; --line-2:#cfc6de;
+  --iris:#5b34a8; --iris-soft:#f1ebfb;
+  --gold:#7c4dcc; --gold-ink:#5b34a8; --gold-soft:#f1ebfb;
+  --pink:#ffffff; --pink-soft:#7c4dcc;
+  --link:#6a3fc0; --heart:#7c4dcc; --dot:#cfc6de;
   --star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z'/%3E%3C/svg%3E");
   --lash:radial-gradient(circle,var(--dot) 1.05px,transparent 1.45px) 0 0/6.5px 3px repeat-x;
   font-size:9.6pt;
 }
 @media screen{
   :root[data-theme="night"]{
-    --paper:#0b1130; --backdrop:#03040a;
-    --ink:#eef1fb; --ink-2:#bec5dc; --ink-3:#9098b4;
-    --line:rgba(170,192,255,.14); --line-2:rgba(170,192,255,.3);
-    --iris:#bac7ff; --iris-soft:rgba(140,165,255,.11);
-    --gold:#f4cb63; --gold-ink:#f4cb63; --gold-soft:rgba(244,203,99,.12);
-    --pink:#f7b4cc; --pink-soft:rgba(247,180,204,.13);
-    --link:#90e6ff; --heart:#86eaff; --dot:rgba(150,225,255,.5);
+    --paper:#1a1426; --backdrop:#0e0b14;
+    --ink:#ece8f5; --ink-2:#c9c1d9; --ink-3:#a49bb6;
+    --line:#2a2338; --line-2:#3a3150;
+    --iris:#b08af5; --iris-soft:rgba(124,77,204,.18);
+    --gold:#b08af5; --gold-ink:#b08af5; --gold-soft:rgba(176,138,245,.14);
+    --pink:#ffffff; --pink-soft:#7c4dcc;
+    --link:#b08af5; --heart:#b08af5; --dot:rgba(176,138,245,.45);
   }
 }
 
@@ -47,8 +49,8 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 .ico{display:inline-block;width:1em;height:1em;flex:none}
 
 /* ===== A4 한 장 ===== */
-.sheet{position:relative;width:210mm;min-height:297mm;margin:0 auto 28px;padding:14mm 15mm 10mm;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;border-radius:5px;box-shadow:0 22px 60px -28px rgba(10,18,52,.45)}
-:root[data-theme="night"] .sheet{box-shadow:0 0 0 1px rgba(170,192,255,.09),0 30px 90px -30px #000}
+.sheet{position:relative;width:210mm;min-height:297mm;margin:0 auto 28px;padding:14mm 15mm 10mm;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;border-radius:5px;box-shadow:0 22px 60px -28px rgba(43,24,80,.45)}
+:root[data-theme="night"] .sheet{border-radius:20px;box-shadow:0 0 0 2px var(--line),0 0 80px rgba(124,77,204,.18)}
 .lash{height:3px;background:var(--lash)}
 .foot{margin-top:auto;padding-top:6mm}
 .foot .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:2.4mm;font-size:.8rem;color:var(--ink-3)}
@@ -79,7 +81,7 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 .pane img{width:100%;height:100%;object-fit:cover}
 .apex{position:absolute;left:50%;top:-6.9mm;width:4.4mm;height:4.4mm;margin-left:-2.2mm;color:var(--gold)}
 .spark{position:absolute;color:var(--gold)}
-:root[data-theme="night"] .spark{filter:drop-shadow(0 0 3px rgba(244,203,99,.55))}
+:root[data-theme="night"] .spark{filter:drop-shadow(0 0 3px rgba(176,138,245,.55))}
 .spark.a{width:6mm;height:6mm;right:-10.5mm;top:24mm}
 .spark.b{width:3.8mm;height:3.8mm;right:-12.5mm;top:14mm}
 .spark.c{width:2.8mm;height:2.8mm;right:-6mm;top:8.5mm}
@@ -100,7 +102,7 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 /* ===== 2쪽: 대표 프로젝트 ===== */
 .proj{display:grid;grid-template-columns:76mm 1fr;gap:7mm;padding:5.5mm 0}
 .proj+.proj{background:var(--lash)}
-.shot{background:#05070e;border-radius:2.4mm;overflow:hidden;box-shadow:0 0 0 .3mm var(--line-2);align-self:start}
+.shot{background:#0e0b14;border-radius:2.4mm;overflow:hidden;box-shadow:0 0 0 .3mm var(--line-2);align-self:start}
 .shot img{width:100%;height:auto}
 .proj-head{display:flex;align-items:center;gap:2.4mm}
 .proj-head h3{font-size:1.42rem;font-weight:800}
@@ -179,9 +181,30 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 .links div{display:grid;grid-template-columns:36mm 1fr;gap:4mm;padding:1.3mm 0;font-size:.9rem}
 .links dt{color:var(--ink-3)}
 
+/* ===== 화면 전용: Eleven 상단 메뉴 (홈페이지와 같은 모양) =====
+   이 페이지는 인쇄용으로 기본 글자가 작아(9.6pt) rem 대신 메뉴 기준(16px)의 em 을 쓴다 */
+.site-header{position:sticky;top:0;z-index:20;margin:-28px -12px 28px;background:rgba(14,11,20,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #2a2338;color:#ece8f5;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.site-header .wrap{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:24px;min-height:68px;flex-wrap:wrap}
+.site-header .brand:hover{text-decoration:none}
+.site-header .brand{display:flex;align-items:center;gap:10px;color:#ece8f5;text-decoration:none;font-weight:800;font-size:1.35em;letter-spacing:-.01em}
+.site-header .brand img{width:40px;height:40px}
+.site-header nav{margin-left:auto;display:flex;gap:4px}
+.site-header nav a{color:#ece8f5;text-decoration:none;font-weight:700;font-size:1.02em;padding:8px 12px;border-radius:10px;transition:background .15s,color .15s}
+.site-header nav a:hover{background:#1a1426;color:#b08af5;text-decoration:none}
+.site-header nav a[aria-current="page"]{color:#b08af5}
+.site-header nav a[aria-current="page"]::after{content:"";display:block;height:2px;background:#b08af5;border-radius:2px;margin-top:2px}
+@media (max-width:640px){
+  .site-header .wrap{gap:0;padding-top:8px}
+  .site-header nav{margin:0 -6px;width:calc(100% + 12px);justify-content:space-between;padding-bottom:6px;gap:0}
+  .site-header nav a{font-size:.86em;padding:8px 4px;white-space:nowrap}
+}
+@media (max-width:380px){.site-header nav{overflow-x:auto;scrollbar-width:none}.site-header nav a{font-size:.76em;padding:8px 1px}}
+
 /* ===== 화면 전용 버튼 ===== */
 .toolbar{position:fixed;right:16px;bottom:16px;display:flex;gap:8px;z-index:10}
-.toolbar button{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border-radius:99px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:0 8px 24px -10px rgba(0,0,0,.6)}
+.toolbar button{font:inherit;font-size:13px;font-weight:700;padding:9px 14px;border-radius:12px;border:2px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:0 8px 24px -10px rgba(0,0,0,.6);transition:transform .15s}
+.toolbar button:hover{transform:translateY(-2px)}
+.toolbar button#printBtn{background:#7c4dcc;border-color:#7c4dcc;color:#fff}
 .toolbar button:hover{border-color:var(--gold)}
 
 /* ===== 인쇄(PDF): A4 4쪽, 밝은 테마 고정 ===== */
@@ -191,13 +214,14 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
   body{padding:0}
   .sheet{width:210mm;height:297mm;min-height:0;margin:0;border-radius:0;box-shadow:none;break-after:page;page-break-after:always}
   .sheet:last-child{break-after:auto;page-break-after:auto}
-  .toolbar{display:none}
+  .toolbar,.site-header{display:none}
 }
 
 /* ===== 모바일 화면 ===== */
 @media screen and (max-width:860px){
   :root{font-size:13.5px}
   body{padding:0 0 84px}
+  .site-header{margin:0 0 10px}
   .sheet{width:auto;min-height:0;margin:0 0 10px;padding:26px 18px 18px;border-radius:0}
   .cover-main{grid-template-columns:1fr;gap:6mm}
   .window{justify-self:center;margin:8mm auto 0;width:min(60vw,240px)}
@@ -215,14 +239,28 @@ h1,h2,h3,h4{line-height:1.25;letter-spacing:-.015em}
 </head>
 <body>
 
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/home/logo-light.svg" alt="">Eleven</a>
+    <nav aria-label="메뉴">
+      <a href="../#about">about</a>
+      <a href="./" aria-current="page">portfolio</a>
+      <a href="../BibleNote/">BibleNote</a>
+      <a href="../#character">character</a>
+      <a href="../#music">music</a>
+      <a href="../#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
 <svg class="sprite" aria-hidden="true" focusable="false">
   <defs>
     <radialGradient id="irisG" cx="50%" cy="42%" r="62%">
-      <stop offset="0" stop-color="#4466d0"/><stop offset=".55" stop-color="#1d2c6c"/><stop offset="1" stop-color="#0c1236"/>
+      <stop offset="0" stop-color="#9a6ff0"/><stop offset=".55" stop-color="#4b2a8a"/><stop offset="1" stop-color="#1b1230"/>
     </radialGradient>
   </defs>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.3" fill="url(#irisG)"/><circle cx="12" cy="12" r="11.3" fill="none" stroke="#f4cb63" stroke-opacity=".6" stroke-width=".7"/><path fill="#f4cb63" d="M12 5.2c.4 3.5 3.3 6.4 6.8 6.8-3.5.4-6.4 3.3-6.8 6.8-.4-3.5-3.3-6.4-6.8-6.8 3.5-.4 6.4-3.3 6.8-6.8z"/><circle cx="8.2" cy="7.6" r="1.05" fill="#fff" fill-opacity=".85"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.3" fill="url(#irisG)"/><circle cx="12" cy="12" r="11.3" fill="none" stroke="#b08af5" stroke-opacity=".7" stroke-width=".7"/><path fill="#ece8f5" d="M12 5.2c.4 3.5 3.3 6.4 6.8 6.8-3.5.4-6.4 3.3-6.8 6.8-.4-3.5-3.3-6.4-6.8-6.8 3.5-.4 6.4-3.3 6.8-6.8z"/><circle cx="8.2" cy="7.6" r="1.05" fill="#fff" fill-opacity=".85"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 22"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 20S2.6 14.3 2.6 7.8C2.6 4.8 4.9 2.6 7.7 2.6c1.8 0 3.4.9 4.3 2.4.9-1.5 2.5-2.4 4.3-2.4 2.8 0 5.1 2.2 5.1 5.2C21.4 14.3 12 20 12 20z"/></symbol>
   <symbol id="i-vein" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M3 9.5C7 9.5 9.5 7 9.5 3"/><path d="M14.5 3c0 4 2.5 6.5 6.5 6.5"/><path d="M21 14.5c-4 0-6.5 2.5-6.5 6.5"/><path d="M9.5 21c0-4-2.5-6.5-6.5-6.5"/></g></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.6 4.6L19 7.4"/></symbol>

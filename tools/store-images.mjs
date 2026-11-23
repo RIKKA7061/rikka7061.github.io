@@ -11,7 +11,7 @@ import { readdir, readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import path from 'node:path';
 
 const SITE = process.argv[2] ?? '_site';
-const LIVE = 'https://rikka7061.github.io';
+const LIVE = 'https://eleven.me.kr';
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 const MAX_SHOTS = 8;
